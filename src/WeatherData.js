@@ -9,7 +9,8 @@ class WeatherData extends React.Component {
           isLoaded: false,
           temperature: 0,
           timezone: "",
-          feels_like: ""
+          feels_like: "",
+          dt: 0
         };
     }
 
@@ -29,7 +30,8 @@ class WeatherData extends React.Component {
                             isLoaded: true,
                             temperature: result.current.temp,
                             timezone: result.timezone,
-                            feels_like: result.current.feels_like
+                            feels_like: result.current.feels_like,
+                            dt: result.current.dt
                         });
                     },
                     (error) => {
@@ -46,14 +48,23 @@ class WeatherData extends React.Component {
       }
     
       render() {
-        const { error, isLoaded, temperature, timezone, feels_like } = this.state;
+        const { error, isLoaded, temperature, timezone, feels_like, dt } = this.state;
+        let date = new Date(dt * 1000);
+        let hours = date.getHours();
+        let minutes = "0" + date.getMinutes();
+        let time = hours + ':' + minutes.substr(-2);
         if (error) {
           return <div>Ошибка: {error.message}</div>;
         } else if (!isLoaded) {
           return <div>Загрузка...</div>;
         } else {
           return (
-            <h1>Часовой пояс: {timezone}, температура: {temperature}°С, чувствуется как {feels_like}°С</h1>
+            <div>
+                <p>Часовой пояс: {timezone}</p>
+                <p>Время: {time}</p>
+                <p>Температура: {temperature}°С</p>
+                <p>Чувствуется как {feels_like}°С</p>
+            </div>
           );
         }
       }
