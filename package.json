@@ -2,23 +2,25 @@
   "name": "vk_weather",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://k0ndrateff.github.io/vk_weather/",
   "main": "index.js",
   "scripts": {
     "start": "cross-env PORT=10888 HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "vk-miniapps-deploy"
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "cross-env": "^5.2.0",
+    "gh-pages": "^3.1.0",
     "react-hot-loader": "^4.9.0",
     "react-scripts": "^4.0.1"
   },
   "dependencies": {
-    "@vkontakte/icons": "^1.18.2",
+    "@vkontakte/icons": "^1.75.0",
     "@vkontakte/vk-bridge": "^2.4.0",
     "@vkontakte/vk-miniapps-deploy": "0.0.17",
     "@vkontakte/vkjs": "^0.20.0",
