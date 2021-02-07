@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
 
-body {
+#root {
     background-color: #afdafc;
 }
 
 .cityHeader {
     font-family: 'Comfortaa', cursive;
     font-size: 2em;
-    margin-left: auto;
-    margin-right: auto;
-    width: 8em;
+    text-align: center;
 }
