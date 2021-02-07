@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+
+body {
+    background-color: linear-gradient(#f5f5f5, #afdafc);
+}
+
 .cityHeader {
-    font-family: 'Roboto', 'Open Sans', 'Helvetica', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Comfortaa', cursive;
     font-size: 2em;
     margin-left: auto;
     margin-right: auto;
+    width: 2em;
 }
