@@ -13,3 +13,11 @@
 .fadedText {
     color: #726d6d;
 }
+
+.temp {
+    font-family: 'Comfortaa', cursive;
+    font-weight: bolder;
+    color: linear-gradient(#2fbdff, #0084ff);
+    font-size: 4em;
+    text-align: center;
+}
