@@ -9,3 +9,13 @@
     font-size: 2em;
     text-align: center;
 }
+
+.dayMonth {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.5em;
+    margin-left: 1%;
+}
+
+.fadedText {
+    color: #535050;
+}
