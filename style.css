@@ -17,9 +17,16 @@
 }
 
 .temp {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bolder;
     color:#2fbdff;
     font-size: 4em;
+    text-align: center;
+}
+
+.feelsLike {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #726d6d;
+    margin-top: -5%;
     text-align: center;
 }
