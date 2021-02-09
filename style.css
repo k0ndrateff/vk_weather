@@ -1,13 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
 
 .mainPanel {
-    background-color: linear-gradient(#ffffff, #e7b76e);
-}
-
-.cityHeader {
-    font-family: 'Comfortaa', cursive;
-    font-size: 2em;
-    text-align: center;
+    background-image: url(./pattern-snow.png);
 }
 
 .dayMonth {
@@ -17,5 +11,5 @@
 }
 
 .fadedText {
-    color: #535050;
+    color: #726d6d;
 }
