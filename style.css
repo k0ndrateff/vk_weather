@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
 
-.mainPanel {
-    background-image: url(./pattern-snow.png);
+.backgroundImage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
 }
 
 .dayMonth {
