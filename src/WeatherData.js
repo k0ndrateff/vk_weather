@@ -1,6 +1,8 @@
 import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
 
+import { Spinner } from '@vkontakte/vkui';
+
 class WeatherData extends React.Component {
     constructor(props) {
         super(props);
@@ -10,7 +12,8 @@ class WeatherData extends React.Component {
           temperature: 0,
           city: "",
           feels_like: "",
-          dt: 0
+          dt: 0,
+          weather: ""
         };
     }
 
@@ -31,7 +34,8 @@ class WeatherData extends React.Component {
                             temperature: result.main.temp,
                             city: result.name,
                             feels_like: result.main.feels_like,
-                            dt: result.dt
+                            dt: result.dt,
+                            weather: result.weather[0].main
                         });
                     },
                     (error) => {
@@ -48,25 +52,29 @@ class WeatherData extends React.Component {
       }
     
       render() {
-        const { error, isLoaded, temperature, city, feels_like, dt } = this.state;
+        const { error, isLoaded, temperature, city, feels_like, dt, weather } = this.state;
         const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
         let date = new Date(dt * 1000);
         let day = date.getDate();
         let month = date.getMonth();
         let hours = date.getHours();
-        let minutes = "0" + date.getMinutes();
-        let time = hours + ':' + minutes.substr(-2);
+        let time = 'утром';
+        if (hours >= 23) { time = 'ночью' } else if ( hours >= 18 ) { time = 'вечером' } else if ( hours >= 12) { time = 'днём' }
         if (error) {
           return <div>Ошибка: {error.message}</div>;
         } else if (!isLoaded) {
-          return <div>Загрузка...</div>;
+          return (
+            <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+              <Spinner size="large" style={{ margin: '20px 0' }} />
+            </div>
+          );
         } else {
           return (
-            <div className='divData'>
-                <h1 className='cityHeader'>{city}</h1>
-                <p>Сегодня, {day} {months[month]}, {time}</p>
-                <p>Температура: {temperature}°С</p>
-                <p>Чувствуется как {feels_like}°С</p>
+            <div>
+                <h2 className='dayMonth'>Сегодня {time} <span className='fadedText'>{day} {months[month]}</span></h2>
+                <h3 className='temp'>{temperature}°С</h3>
+                <h3 className='feelsLike'>Ощущается как {feels_like}°С</h3>
+                <h3>{weather}</h3>
             </div>
           );
         }

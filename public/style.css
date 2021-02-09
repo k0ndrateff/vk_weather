@@ -1,7 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
 
-.cityHeader {
+.backgroundImage {
+    position: absolute;
+    width: 100%;
+    z-index: -10;
+}
+
+.dayMonth {
     font-family: 'Comfortaa', cursive;
-    font-size: 2em;
+    font-size: 1.5em;
+    margin-left: 1%;
+}
+
+.fadedText {
+    color: #726d6d;
+}
+
+.temp {
+    font-family: 'Comfortaa', cursive;
+    font-weight: bolder;
+    color:#2fbdff;
+    font-size: 4em;
+    text-align: center;
+}
+
+.feelsLike {
+    font-family: 'Comfortaa', cursive;
+    color: #726d6d;
+    margin-top: -5%;
     text-align: center;
 }
