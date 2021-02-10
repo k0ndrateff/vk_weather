@@ -30,3 +30,11 @@
     margin-top: -5%;
     text-align: center;
 }
+
+.weatherName {
+    font-family: 'Comfortaa', cursive;
+    font-weight: bolder;
+    color: #000000;
+    margin-top: -5%;
+    text-align: center;
+}
