@@ -1,7 +1,7 @@
 import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
-import { View, Panel, PanelHeader, Spinner } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, Spinner, Group, CellButton, PanelHeaderBack, Header, SimpleCell, InfoRow, Tooltip } from '@vkontakte/vkui';
 import {  Icon24PlaceOutline, Icon28ErrorCircleOutline, Icon24Spinner } from '@vkontakte/icons';
 
 class App extends React.Component {
@@ -15,6 +15,8 @@ class App extends React.Component {
 			feels_like: "",
 			dt: 0,
 			weather: "",
+			other: '',
+			forecast: '',
 			activePanel: 'main',
 			history: ['main']
 		  };
@@ -33,12 +35,28 @@ class App extends React.Component {
                     .then(
                     (result) => {
                         this.setState({
-                            isLoaded: true,
                             temperature: result.main.temp,
                             city: result.name,
                             feels_like: result.main.feels_like,
                             dt: result.dt,
-                            weather: result.weather[0].description
+                            weather: result.weather[0].description,
+							other: result
+                        });
+                    },
+                    (error) => {
+                        this.setState({
+                            isLoaded: true,
+                            error
+                    	});
+                    }
+                )
+				fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon=" + long + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
+                    .then(res => res.json())
+                    .then(
+                    (result) => {
+                        this.setState({
+                            isLoaded: true,
+                            forecast: result.daily[0]
                         });
                     },
                     (error) => {
@@ -74,7 +92,8 @@ class App extends React.Component {
 	}
 
 	render() {
-		const { error, isLoaded, temperature, city, feels_like, dt, weather } = this.state;
+		const { platform } = this.props;
+		const { error, isLoaded, temperature, city, feels_like, dt, weather, other, forecast } = this.state;
         const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
         let date = new Date(dt * 1000);
         let day = date.getDate();
@@ -124,7 +143,48 @@ class App extends React.Component {
                 			<h3 className='temp'>{temperature}°С</h3>
                 			<h3 className='feelsLike'>Ощущается как {feels_like}°С</h3>
                 			<h3 className='weatherName'>{weather}</h3>
+							<Group>
+              					<CellButton onClick={ () => this.goForward('more_weather') }>
+                					Ещё о погоде
+              					</CellButton>
+            				</Group>
+								<Group>
+								<Header mode='secondary'>Прогноз на завтра</Header>
+								<SimpleCell multiline>
+									<InfoRow header="Погода">
+										{forecast.weather[0].description}
+									</InfoRow>
+								</SimpleCell>
+								<SimpleCell multiline>
+									<InfoRow header="Температура">
+										{forecast.temp.day}°С
+									</InfoRow>
+								</SimpleCell>
+								<SimpleCell multiline>
+									<InfoRow header="Облачность">
+										{forecast.clouds}%
+									</InfoRow>
+								</SimpleCell>
+							</Group>
             			</div>
+					</Panel>
+					<Panel id='more_weather'>
+						<PanelHeader
+              				left={<PanelHeaderBack  onClick={() => this.goBack()} label={platform === 'VKCOM' ? 'Назад' : undefined} />}
+            			>
+              				Текущая погода
+            			</PanelHeader>
+						<div>
+							<p className='weatherInfo'>Город: {city}</p>
+							<p className='weatherInfo'>Погода: {weather}</p>
+							<p className='weatherInfo'>Температура: {temperature}°С</p>
+							<p className='weatherInfo'>Разброс: {other.main.temp_min}...{other.main.temp_max}°С</p>
+							<p className='weatherInfo'>Ощущается как: {feels_like}°С</p>
+							<p className='weatherInfo'>Давление: {other.main.pressure} гПа</p>
+							<p className='weatherInfo'>Влажность: {other.main.humidity}%</p>
+							<p className='weatherInfo'>Ветер: {other.wind.deg}° {other.wind.speed} м/с</p>
+							<p className='weatherInfo'>Облачность: {other.clouds.all}%</p>
+						</div>
 					</Panel>
 		  		</View>
 			);}

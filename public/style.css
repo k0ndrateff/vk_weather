@@ -39,3 +39,9 @@
     margin-top: 10%;
     text-align: center;
 }
+
+.weatherInfo {
+    font-family: 'Comfortaa', cursive;
+    color: #726d6d;
+    margin-left: 1%;
+}
