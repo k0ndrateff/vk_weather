@@ -45,3 +45,8 @@
     color: #726d6d;
     margin-left: 1%;
 }
+
+.main-weather {
+    background-color: linear-gradient(#9e566f, #531194);
+    border-radius: 10px;
+}
