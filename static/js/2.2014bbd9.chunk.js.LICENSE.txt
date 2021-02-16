@@ -4,6 +4,15 @@ object-assign
 @license MIT
 */
 
+/*!
+     Transformation Matrix v2.0
+     (c) Epistemex 2014-2015
+     www.epistemex.com
+     By Ken Fyrstenberg
+     Contributions by leeoniya.
+     License: MIT, header required.
+     */
+
 /** @license React v0.15.0
  * scheduler.production.min.js
  *
