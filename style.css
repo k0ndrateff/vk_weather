@@ -22,6 +22,7 @@
     color:#2fbdff;
     font-size: 4em;
     text-align: center;
+    display: inline-block;
 }
 
 .feelsLike {
@@ -48,12 +49,6 @@
 
 .main-weather {
     border-radius: 10px;
-}
-
-.weather-icon {
-    position: relative;
-    height: 50px;
-    width: 50px;
 }
 
 .inline-temp {
