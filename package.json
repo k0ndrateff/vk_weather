@@ -20,6 +20,7 @@
     "react-scripts": "^4.0.1"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.0.0",
     "@vkontakte/icons": "^1.75.0",
     "@vkontakte/vk-bridge": "^2.4.0",
     "@vkontakte/vk-miniapps-deploy": "0.0.17",

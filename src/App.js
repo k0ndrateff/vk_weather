@@ -3,6 +3,7 @@ import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
 import { View, Panel, PanelHeader, Spinner, Group, CellButton, PanelHeaderBack, Header, SimpleCell, InfoRow, Tooltip } from '@vkontakte/vkui';
 import {  Icon24PlaceOutline, Icon28ErrorCircleOutline, Icon24Spinner } from '@vkontakte/icons';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 class App extends React.Component {
 	constructor(props) {
@@ -100,6 +101,7 @@ class App extends React.Component {
         let month = date.getMonth();
         let hours = date.getHours();
         let time = 'утром';
+		let feeling = Math.round(feels_like);
         if (hours >= 23 || hours <= 4) { time = 'ночью' } else if ( hours >= 18 ) { time = 'вечером' } else if ( hours >= 12) { time = 'днём' }
 		if (error) {
 			return (
@@ -122,9 +124,15 @@ class App extends React.Component {
 					activePanel={this.state.activePanel}
 				>
 					<Panel id='main'>
-						<PanelHeader left={<Icon24Spinner />}>Загрузка...</PanelHeader>
+						<PanelHeader>Загрузка...</PanelHeader>
 			  			<div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-							<Spinner size="large" style={{ margin: '20px 0' }} />
+						  	<Player
+  								autoplay
+  								loop
+  								src="https://assets4.lottiefiles.com/packages/lf20_Cemmpu.json"
+  								style={{ height: '300px', width: '300px' }}
+						  	>
+							</Player>
 			  			</div>
 			  		</Panel>
 			  	</View>
@@ -137,12 +145,22 @@ class App extends React.Component {
 					activePanel={this.state.activePanel}
 				>
 					<Panel id="main">
-					  	<PanelHeader left={<Icon24PlaceOutline />}>{city}</PanelHeader>
+					  	<PanelHeader>{city}</PanelHeader>
 					  	<div>
-                			<h2 className='dayMonth'>Сегодня {time} <span className='fadedText'>{day} {months[month]}</span></h2>
-                			<h3 className='temp'>{temperature}°С</h3>
-                			<h3 className='feelsLike'>Ощущается как {feels_like}°С</h3>
-                			<h3 className='weatherName'>{weather}</h3>
+							<div className='main-weather'>
+								<h2 className='dayMonth'>Сегодня {time} <span className='fadedText'>{day} {months[month]}</span></h2>
+								<div className='inline-temp'>
+									<h3 className='temp'>{temperature}°С</h3>
+									<Player
+										autoplay
+										loop
+										src='https://assets10.lottiefiles.com/temp/lf20_WtPCZs.json'
+										style={{height: '100px', width: '100px'}}
+									></Player>
+								</div>
+                				<h3 className='feelsLike'>Ощущается как {feeling}°С</h3>
+                				<h3 className='weatherName'>{weather}</h3>
+							</div>
 							<Group>
               					<CellButton onClick={ () => this.goForward('more_weather') }>
                 					Ещё о погоде
@@ -178,7 +196,6 @@ class App extends React.Component {
 							<p className='weatherInfo'>Город: {city}</p>
 							<p className='weatherInfo'>Погода: {weather}</p>
 							<p className='weatherInfo'>Температура: {temperature}°С</p>
-							<p className='weatherInfo'>Разброс: {other.main.temp_min}...{other.main.temp_max}°С</p>
 							<p className='weatherInfo'>Ощущается как: {feels_like}°С</p>
 							<p className='weatherInfo'>Давление: {other.main.pressure} гПа</p>
 							<p className='weatherInfo'>Влажность: {other.main.humidity}%</p>
