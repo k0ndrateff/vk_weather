@@ -23,6 +23,7 @@
     font-size: 4em;
     text-align: center;
     margin-top: -2%;
+    order: 2;
 }
 
 .feelsLike {
@@ -54,6 +55,5 @@
 .inline-temp {
     display: flex;
     justify-content: space-around;
-    align-items: baseline;
     width: 100%;
 }
