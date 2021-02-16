@@ -22,7 +22,6 @@
     color:#2fbdff;
     font-size: 4em;
     text-align: center;
-    display: inline-block;
     align-self: right;
 }
 
@@ -53,6 +52,8 @@
 }
 
 .inline-temp {
-    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
     width: 100%;
 }
