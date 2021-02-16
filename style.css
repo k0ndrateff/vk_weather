@@ -47,6 +47,13 @@
 }
 
 .main-weather {
-    background-color: linear-gradient(#9e566f, #531194);
+    background-color: #9e5666;
     border-radius: 10px;
+}
+
+.weather-icon {
+    position: absolute;
+    z-index: -2;
+    height: 10%;
+    width: 10%;
 }
