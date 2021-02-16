@@ -47,13 +47,15 @@
 }
 
 .main-weather {
-    background-color: #9e5666;
     border-radius: 10px;
 }
 
 .weather-icon {
-    position: absolute;
-    z-index: -2;
-    height: 10%;
-    width: 10%;
+    position: relative;
+    height: 50px;
+    width: 50px;
+}
+
+.inline-temp {
+    display: inline;
 }
