@@ -63,12 +63,11 @@
     justify-content: space-around;
     width: calc(100% - 30px);
     border-radius: 10px;
-    background-color: #17fff3;
+    background-color: #17fff398;
     margin: 15px;
 }
 
 .fore-date {
-    margin-left: 5px;
     font-family: 'Comfortaa', cursive;
 }
 
