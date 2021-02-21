@@ -1,7 +1,7 @@
 import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
-import { View, Panel, PanelHeader, Spinner, Group, CellButton, PanelHeaderBack, Header, SimpleCell, InfoRow, Tooltip } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, Group, CellButton, PanelHeaderBack, Header, SimpleCell, InfoRow, Tooltip } from '@vkontakte/vkui';
 import {  Icon28ErrorCircleOutline } from '@vkontakte/icons';
 import { Player } from '@lottiefiles/react-lottie-player';
 import DailyForecast from './DailyForecast';
@@ -60,6 +60,7 @@ class App extends React.Component {
                             isLoaded: true,
                             forecast: result.daily.slice(1)
                         });
+						console.log(result.alerts);
                     },
                     (error) => {
                         this.setState({
@@ -105,9 +106,18 @@ class App extends React.Component {
 		let feeling = Math.round(feels_like);
         if (hours >= 23 || hours <= 4) { time = 'ночью' } else if ( hours >= 18 ) { time = 'вечером' } else if ( hours >= 12) { time = 'днём' }
 		let fore_weather = [...forecast].map((day) =>
-			<DailyForecast weather={day} />
+			<DailyForecast weather={day} onClick={ () => this.goForward(day.dt) } />
 		);
-		// TODO: FORECAST PANELS!!!
+		let fore_panels = [...forecast].map((day) => (
+			<Panel id={day.dt}>
+				<PanelHeader
+              		left={<PanelHeaderBack  onClick={() => this.goBack()} label={platform === 'VKCOM' ? 'Назад' : undefined} />}
+            	>
+              		Погода на {day.dt}
+            	</PanelHeader>
+				<DailyForecast weather={day} />
+			</Panel>
+		));
 		if (error) {
 			return (
 				<View 
@@ -194,6 +204,7 @@ class App extends React.Component {
 							<p className='weatherInfo'>Облачность: {other.clouds.all}%</p>
 						</div>
 					</Panel>
+					{fore_panels}
 		  		</View>
 			);}
 	}

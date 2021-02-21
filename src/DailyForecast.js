@@ -1,5 +1,4 @@
 import React from 'react';
-import App from './App';
 
 class DailyForecast extends React.Component {
     constructor(props) {
@@ -16,7 +15,7 @@ class DailyForecast extends React.Component {
 
     render() {
         return (
-            <div className="forecast">
+            <div className="forecast" onClick={this.props.onClick}>
                 <h2 className="fore-date">{this.toNormalDate(this.props.weather.dt)}</h2>
                 <h2 className="fore-temp">{Math.round(this.props.weather.temp.day)}°С</h2>
             </div>
