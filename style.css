@@ -61,7 +61,7 @@
 .forecast {
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    width: calc(100% - 30px);
     border-radius: 10px;
     background-color: #17fff3;
     margin: 15px;
