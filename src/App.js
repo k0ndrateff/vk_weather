@@ -2,8 +2,9 @@ import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
 import { View, Panel, PanelHeader, Spinner, Group, CellButton, PanelHeaderBack, Header, SimpleCell, InfoRow, Tooltip } from '@vkontakte/vkui';
-import {  Icon24PlaceOutline, Icon28ErrorCircleOutline, Icon24Spinner } from '@vkontakte/icons';
+import {  Icon28ErrorCircleOutline } from '@vkontakte/icons';
 import { Player } from '@lottiefiles/react-lottie-player';
+import DailyForecast from './DailyForecast';
 
 class App extends React.Component {
 	constructor(props) {
@@ -57,7 +58,7 @@ class App extends React.Component {
                     (result) => {
                         this.setState({
                             isLoaded: true,
-                            forecast: result.daily[0]
+                            forecast: result.daily.slice(1)
                         });
                     },
                     (error) => {
@@ -103,6 +104,10 @@ class App extends React.Component {
         let time = 'утром';
 		let feeling = Math.round(feels_like);
         if (hours >= 23 || hours <= 4) { time = 'ночью' } else if ( hours >= 18 ) { time = 'вечером' } else if ( hours >= 12) { time = 'днём' }
+		let fore_weather = [...forecast].map((day) =>
+			<DailyForecast weather={day} />
+		);
+		// TODO: FORECAST PANELS!!!
 		if (error) {
 			return (
 				<View 
@@ -159,30 +164,16 @@ class App extends React.Component {
 									></Player>
 								</div>
                 				<h3 className='feelsLike'>Ощущается как {feeling}°С</h3>
-                				<h3 className='weatherName'>{weather}</h3>
+                				<h3 className='weatherName'>На улице {weather}</h3>
 							</div>
 							<Group>
               					<CellButton onClick={ () => this.goForward('more_weather') }>
                 					Ещё о погоде
               					</CellButton>
             				</Group>
-								<Group>
-								<Header mode='secondary'>Прогноз на завтра</Header>
-								<SimpleCell multiline>
-									<InfoRow header="Погода">
-										{forecast.weather[0].description}
-									</InfoRow>
-								</SimpleCell>
-								<SimpleCell multiline>
-									<InfoRow header="Температура">
-										{forecast.temp.day}°С
-									</InfoRow>
-								</SimpleCell>
-								<SimpleCell multiline>
-									<InfoRow header="Облачность">
-										{forecast.clouds}%
-									</InfoRow>
-								</SimpleCell>
+							<Group>
+								<Header mode='secondary'>Прогноз</Header>
+								{fore_weather}
 							</Group>
             			</div>
 					</Panel>

@@ -57,3 +57,22 @@
     justify-content: space-around;
     width: 100%;
 }
+
+.forecast {
+    display: flex;
+    justify-content: space-around;
+    width: calc(100% - 30px);
+    border-radius: 10px;
+    background-color: #17fff398;
+    margin: 15px;
+}
+
+.fore-date {
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.8em;
+}
+
+.fore-temp {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.5em;
+}
