@@ -60,8 +60,19 @@
 
 .forecast {
     display: flex;
+    justify-content: space-around;
     width: 100%;
     border-radius: 10px;
-    background-color: #89fdd6;
+    background-color: #17fff3;
     margin: 15px;
+}
+
+.fore-date {
+    margin-left: 5px;
+    font-family: 'Comfortaa', cursive;
+}
+
+.fore-temp {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.5em;
 }
