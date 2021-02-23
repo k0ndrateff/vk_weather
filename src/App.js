@@ -5,6 +5,7 @@ import { View, Panel, PanelHeader, Group, CellButton, PanelHeaderBack, Header, S
 import {  Icon28ErrorCircleOutline } from '@vkontakte/icons';
 import { Player } from '@lottiefiles/react-lottie-player';
 import DailyForecast from './DailyForecast';
+import DailyForecastPanel from './DailyForecastPanel';
 
 class App extends React.Component {
 	constructor(props) {
@@ -19,6 +20,7 @@ class App extends React.Component {
 			weather: "",
 			other: '',
 			forecast: '',
+			alerts: '',
 			activePanel: 'main',
 			history: ['main']
 		  };
@@ -30,8 +32,14 @@ class App extends React.Component {
         bridge
             .send('VKWebAppGetGeodata')
             .then(data => {
-                lat = data.lat;
-                long = data.long;
+				if (data.error_type == "client_error") {
+					lat = 30;
+					long = 50;
+				}
+				else {
+					lat = data.lat;
+                	long = data.long;
+				}
                 fetch("https://api.openweathermap.org/data/2.5/weather?lat="+ lat +"&lon=" + long + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
                     .then(res => res.json())
                     .then(
@@ -58,7 +66,8 @@ class App extends React.Component {
                     (result) => {
                         this.setState({
                             isLoaded: true,
-                            forecast: result.daily.slice(1)
+                            forecast: result.daily.slice(1),
+							alerts: result.alerts
                         });
 						console.log(result.alerts);
                     },
@@ -71,7 +80,10 @@ class App extends React.Component {
                 )
             })
             .catch(error => {
-                console.log(error.message);
+                this.setState({
+					isLoaded: true,
+					error
+				});
             });
 	}
 	
@@ -94,17 +106,22 @@ class App extends React.Component {
 		this.setState({ history, activePanel });
 	}
 
-	render() {
-		const { platform } = this.props;
-		const { error, isLoaded, temperature, city, feels_like, dt, weather, other, forecast } = this.state;
+	toNormalDate = (dt) => {
         const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
         let date = new Date(dt * 1000);
         let day = date.getDate();
         let month = date.getMonth();
+        return day + ' ' + months[month];
+    }
+
+	render() {
+		const { platform } = this.props;
+		const { error, isLoaded, temperature, city, feels_like, dt, weather, other, forecast, alerts } = this.state;
+        let date = new Date(dt * 1000);
         let hours = date.getHours();
         let time = 'утром';
-		let feeling = Math.round(feels_like);
         if (hours >= 23 || hours <= 4) { time = 'ночью' } else if ( hours >= 18 ) { time = 'вечером' } else if ( hours >= 12) { time = 'днём' }
+		let feeling = Math.round(feels_like);
 		let fore_weather = [...forecast].map((day) =>
 			<DailyForecast weather={day} onClick={ () => this.goForward(day.dt) } />
 		);
@@ -113,10 +130,13 @@ class App extends React.Component {
 				<PanelHeader
               		left={<PanelHeaderBack  onClick={() => this.goBack()} label={platform === 'VKCOM' ? 'Назад' : undefined} />}
             	>
-              		Погода на {day.dt}
+              		Погода {this.toNormalDate(day.dt)}
             	</PanelHeader>
-				<DailyForecast weather={day} />
+				<DailyForecastPanel weather={day} />
 			</Panel>
+		));
+		let alertsMap = [...alerts].map((alert) => (
+			<p className="weatherInfo">{alert.description}</p>
 		));
 		if (error) {
 			return (
@@ -163,7 +183,7 @@ class App extends React.Component {
 					  	<PanelHeader>{city}</PanelHeader>
 					  	<div>
 							<div className='main-weather'>
-								<h2 className='dayMonth'>Сегодня {time} <span className='fadedText'>{day} {months[month]}</span></h2>
+								<h2 className='dayMonth'>Сегодня {time} <span className='fadedText'>{this.toNormalDate(dt)}</span></h2>
 								<div className='inline-temp'>
 									<h3 className='temp'>{temperature}°С</h3>
 									<Player
@@ -203,6 +223,10 @@ class App extends React.Component {
 							<p className='weatherInfo'>Ветер: {other.wind.deg}° {other.wind.speed} м/с</p>
 							<p className='weatherInfo'>Облачность: {other.clouds.all}%</p>
 						</div>
+						<Group>
+								<Header mode='secondary'>Предупреждения!!!</Header>
+								{alertsMap}
+						</Group>
 					</Panel>
 					{fore_panels}
 		  		</View>
