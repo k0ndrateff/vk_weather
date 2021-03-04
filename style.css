@@ -48,23 +48,25 @@ h1 {
 .timeWrap {
     display: inline;
     width: 100%;
-    margin-top: -5%;
+    margin-top: -25%;
 }
 
 .leftTime {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Comfortaa', cursive;
     font-weight: 800;
     font-size: 1.4em;
     text-align: left;
-    color: white;
+    color: rgb(233, 233, 233);
     float: left;
+    padding: 5%;
 }
 
 .rightTime {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Comfortaa', cursive;
     font-weight: 800;
     font-size: 1.4em;
     text-align: right;
-    color: white;
+    color: rgb(233, 233, 233);
     float: right;
+    padding: 5%
 }
