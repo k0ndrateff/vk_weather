@@ -7,6 +7,7 @@ h1 {
     font-size: 2.8em;
     text-align: center;
     color: white;
+    padding-top: -5%;
 }
 
 .mainGradient {
@@ -35,8 +36,7 @@ h1 {
 }
 
 .city {
-    font-family: 'Confortaa', cursive;
+    font-family: 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 1.8em;
-    color: rgb(180, 180, 180);
 }
