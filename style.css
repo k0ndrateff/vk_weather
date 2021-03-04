@@ -44,3 +44,27 @@ h1 {
 .cityWrap {
     width: 75%;
 }
+
+.timeWrap {
+    display: inline;
+    width: 100%;
+    margin-top: -5%;
+}
+
+.leftTime {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    font-size: 1.4em;
+    text-align: left;
+    color: white;
+    float: left;
+}
+
+.rightTime {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    font-size: 1.4em;
+    text-align: right;
+    color: white;
+    float: right;
+}
