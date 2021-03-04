@@ -7,6 +7,7 @@ h1 {
     font-size: 2.8em;
     text-align: center;
     color: white;
+    margin-bottom: 0;
 }
 
 .mainGradient {
@@ -20,7 +21,7 @@ h1 {
 }
 
 @keyframes loading {
-    from {
+    0% {
         content: 'Загрузка';
     }
     33% {
@@ -29,7 +30,7 @@ h1 {
     66% {
         content: 'Загрузка..';
     }
-    to {
+    100% {
         content: 'Загрузка...'
     }
 }
@@ -45,30 +46,10 @@ h1 {
     width: 75%;
 }
 
-.timeWrap {
-    display: inline;
-    width: 100%;
-    margin-top: -25%;
-}
-
-.leftTime {
+.mainTemp {
     font-family: 'Comfortaa', cursive;
-    font-weight: 800;
-    font-size: 2em;
-    text-align: left;
-    color: rgb(233, 233, 233);
-    float: left;
-    padding: 5%;
-    padding-top: -10%;
-}
-
-.rightTime {
-    font-family: 'Comfortaa', cursive;
-    font-weight: 800;
-    font-size: 2em;
-    text-align: right;
-    color: rgb(233, 233, 233);
-    float: right;
-    padding: 5%;
-    padding-top: -10%;
+    font-weight: 700;
+    font-size: 3.5em;
+    text-align: center;
+    color: rgb(255, 219, 153);
 }
