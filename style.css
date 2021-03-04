@@ -38,5 +38,5 @@ h1 {
     font-family: 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 1.6em;
-    text-decoration: dotted;
+    text-decoration: underline dotted;
 }
