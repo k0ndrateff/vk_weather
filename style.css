@@ -49,7 +49,15 @@ h1 {
 .mainTemp {
     font-family: 'Comfortaa', cursive;
     font-weight: 700;
-    font-size: 3.5em;
+    font-size: 4em;
+    text-align: center;
+    color: rgb(255, 219, 153);
+}
+
+.mainFeels {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 2em;
     text-align: center;
     color: rgb(255, 219, 153);
 }
