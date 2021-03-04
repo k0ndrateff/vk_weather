@@ -33,3 +33,10 @@ h1 {
         content: 'Загрузка...'
     }
 }
+
+.city {
+    font-family: 'Confortaa', cursive;
+    font-weight: 700;
+    font-size: 1.8em;
+    color: rgb(180, 180, 180);
+}
