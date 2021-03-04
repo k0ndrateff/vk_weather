@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap');
+
+h1 { 
+    font-family: 'Raleway', sans-serif;
+}
+
+.mainGradient {
+    background-color: rgb(255, 123, 0);
+}
