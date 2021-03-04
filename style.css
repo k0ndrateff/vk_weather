@@ -16,7 +16,7 @@ h1 {
 }
 
 .loadingText {
-    animation: loading 2s infinite;
+    animation: loading 1s infinite;
 }
 
 @keyframes loading {
@@ -39,4 +39,8 @@ h1 {
     font-weight: 700;
     font-size: 1.6em;
     text-decoration: underline dotted;
+}
+
+.cityWrap {
+    width: 75%;
 }
