@@ -54,19 +54,21 @@ h1 {
 .leftTime {
     font-family: 'Comfortaa', cursive;
     font-weight: 800;
-    font-size: 1.4em;
+    font-size: 2em;
     text-align: left;
     color: rgb(233, 233, 233);
     float: left;
     padding: 5%;
+    padding-top: -10%;
 }
 
 .rightTime {
     font-family: 'Comfortaa', cursive;
     font-weight: 800;
-    font-size: 1.4em;
+    font-size: 2em;
     text-align: right;
     color: rgb(233, 233, 233);
     float: right;
-    padding: 5%
+    padding: 5%;
+    padding-top: -10%;
 }
