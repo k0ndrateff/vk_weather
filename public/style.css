@@ -1,77 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 
-.backgroundImage {
-    position: absolute;
+h1 { 
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    font-size: 2.8em;
+    text-align: center;
+    color: white;
+    margin-bottom: 0;
+}
+
+.mainGradient {
     width: 100%;
-    z-index: -10;
+    height: 100vh;
+    background: linear-gradient(rgb(255, 187, 0), rgb(252, 55, 5));
 }
 
-.dayMonth {
+.loadingText {
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0% {
+        content: 'Загрузка';
+    }
+    33% {
+        content: 'Загрузка.';
+    }
+    66% {
+        content: 'Загрузка..';
+    }
+    100% {
+        content: 'Загрузка...'
+    }
+}
+
+.city {
     font-family: 'Comfortaa', cursive;
-    font-size: 1.5em;
-    margin-left: 1%;
+    font-weight: 700;
+    font-size: 1.6em;
+    text-decoration: underline dotted;
 }
 
-.fadedText {
-    color: #726d6d;
+.cityWrap {
+    width: 75%;
 }
 
-.temp {
+.mainTemp {
     font-family: 'Comfortaa', cursive;
-    font-weight: bolder;
-    color:#2fbdff;
-    font-size: 4em;
+    font-weight: 700;
+    font-size: 4.3em;
     text-align: center;
-    margin-top: -2%;
-    order: 2;
+    color: rgb(255, 219, 153);
 }
 
-.feelsLike {
+.mainFeels {
     font-family: 'Comfortaa', cursive;
-    color: #726d6d;
-    margin-top: -5%;
-    text-align: center;
-}
-
-.weatherName {
-    font-family: 'Comfortaa', cursive;
-    font-weight: bolder;
+    font-weight: 700;
     font-size: 1.5em;
-    color: #000000;
-    margin-top: 10%;
     text-align: center;
-}
-
-.weatherInfo {
-    font-family: 'Comfortaa', cursive;
-    color: #726d6d;
-    margin-left: 1%;
-}
-
-.main-weather {
-    border-radius: 10px;
-}
-
-.inline-temp {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-.forecast {
-    display: flex;
-    justify-content: space-around;
-    width: calc(100% - 30px);
-    border-radius: 10px;
-    background-color: #2fbdff;
-    margin: 15px;
-}
-
-.fore-date {
-    font-family: 'Comfortaa', cursive;
-}
-
-.fore-temp {
-    font-family: 'Comfortaa', cursive;
-    font-size: 1.5em;
+    color: rgb(255, 219, 153);
 }
