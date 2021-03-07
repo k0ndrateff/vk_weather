@@ -74,16 +74,24 @@ h1 {
 .currentWrap {
     width: 90%;
     margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 5%;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .todayString {
+    position: relative;
+    font-size: 1.3em;
     text-align: left;
     float: left;
 }
 
 .todayDate {
+    position: relative;
+    font-size: 1.3em;
     text-align: right;
     float: right;
 }
