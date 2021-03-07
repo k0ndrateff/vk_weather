@@ -66,7 +66,7 @@ h1 {
 
 .mainWeather {
     position: relative;
-    display: block;
+    display: inline;
     font-family: 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 1.6em;
@@ -91,6 +91,7 @@ h1 {
     text-align: left;
     float: left;
     margin-left: 10px;
+    margin-top: 10px;
 }
 
 .todayDate {
@@ -99,4 +100,5 @@ h1 {
     text-align: right;
     float: right;
     margin-right: 10px;
+    margin-top: 10px;
 }
