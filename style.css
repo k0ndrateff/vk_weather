@@ -44,6 +44,7 @@ h1 {
 
 .cityWrap {
     width: 75%;
+    margin-bottom: 5%;
 }
 
 .mainTemp {
@@ -64,6 +65,7 @@ h1 {
 }
 
 .mainWeather {
+    position: relative;
     font-family: 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 1.6em;
@@ -84,14 +86,14 @@ h1 {
 
 .todayString {
     position: relative;
-    font-size: 1.3em;
+    font-size: 1.5em;
     text-align: left;
     float: left;
 }
 
 .todayDate {
     position: relative;
-    font-size: 1.3em;
+    font-size: 1.5em;
     text-align: right;
     float: right;
 }
