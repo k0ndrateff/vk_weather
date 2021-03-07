@@ -88,6 +88,7 @@ h1 {
 .today {
     position: relative;
     display: inline;
+    height: 100%;
 }
 
 .todayString {
@@ -104,6 +105,7 @@ h1 {
     display: inline;
     font-size: 1.6em;
     text-align: right;
+    float: right;
     margin-right: 10px;
     margin-top: 10px;
 }
