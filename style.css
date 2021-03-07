@@ -73,6 +73,17 @@ h1 {
 
 .currentWrap {
     width: 90%;
+    margin: 0 auto;
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 5%;
+}
+
+.todayString {
+    text-align: left;
+    float: left;
+}
+
+.todayDate {
+    text-align: right;
+    float: right;
 }
