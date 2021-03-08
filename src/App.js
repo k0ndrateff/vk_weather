@@ -1,7 +1,7 @@
 import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
-import { Panel, View, PanelHeader } from '@vkontakte/vkui';
+import { Panel, View, ModalRoot, ModalPage, ModalPageHeader, PanelHeaderClose, PanelHeaderSubmit, FormItem, Input, FormLayout } from '@vkontakte/vkui';
 
 import LoadingImage from './img/loading.svg';
 
@@ -13,8 +13,11 @@ class App extends React.Component {
             isLoaded: false,
             weather: '',
             forecast: '',
+            hourly: '',
             activePanel: 'main',
-            history: ['main']
+            history: ['main'],
+            activeModal: null,
+            modalHistory: []
         };
     }
 
@@ -49,7 +52,8 @@ class App extends React.Component {
                         .then((result) => {
                             this.setState({
                                 isLoaded: true,
-                                forecast: result.daily.slice(1)
+                                forecast: result.daily.slice(1),
+                                hourly: result.hourly
                             });
                         },
                         (error) => {
@@ -87,6 +91,28 @@ class App extends React.Component {
 		this.setState({ history, activePanel });
 	}
 
+    modalBack = () => {
+        this.setActiveModal(this.state.modalHistory[this.state.modalHistory.length - 2]);
+    };
+
+    setActiveModal = (activeModal) => {
+        activeModal = activeModal || null;
+        let modalHistory = this.state.modalHistory ? [...this.state.modalHistory] : [];
+    
+        if (activeModal === null) {
+          modalHistory = [];
+        } else if (modalHistory.indexOf(activeModal) !== -1) {
+          modalHistory = modalHistory.splice(0, modalHistory.indexOf(activeModal) + 1);
+        } else {
+          modalHistory.push(activeModal);
+        }
+    
+        this.setState({
+          activeModal,
+          modalHistory
+        });
+    };
+
     toNormalDate = (dt) => {
         const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
         let date = new Date(dt * 1000);
@@ -99,8 +125,8 @@ class App extends React.Component {
         let date = new Date(dt * 1000);
         let hour = date.getHours();
         let minute = date.getMinutes();
-        let time = 'утро';
-        if (hour < 5 || hour > 22) { time = 'ночь' } else if (hour > 18) { time = 'вечер' } else if (hour > 10) { time = 'день' }
+        let time = 'утром';
+        if (hour < 5 || hour > 22) { time = 'ночью' } else if (hour > 18) { time = 'вечером' } else if (hour > 10) { time = 'днём' }
         let res = {
             time: hour + ':' + minute,
             string: time
@@ -108,8 +134,82 @@ class App extends React.Component {
         return res
     }
 
+    updateGeoData = (city) => {
+        this.modalBack();
+        fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=e937bb61987a79d09b7604a3375a9941')
+            .then(res => res.json())
+            .then((result) => {
+                fetch("https://api.openweathermap.org/data/2.5/weather?lat="+ result[0].lat +"&lon=" + result[0].lon + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
+                    .then(res => res.json())
+                    .then((result) => {
+                        this.setState({ 
+                            weather: result
+                        });
+                    },
+                    (error) => {
+                        this.setState({
+                            isLoaded: true,
+                            error
+                    });
+                })
+                fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+ result[0].lat +"&lon=" + result[0].lon + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
+                    .then(res => res.json())
+                    .then((result) => {
+                        this.setState({
+                            isLoaded: true,
+                            forecast: result.daily.slice(1),
+                            hourly: result.hourly
+                        });
+                    },
+                    (error) => {
+                        this.setState({
+                            isLoaded: true,
+                            error
+                    });
+            }
+        )
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+        })
+    }
+
     render() {
-        const { error, isLoaded, weather } = this.state;
+        const { error, isLoaded, weather, hourly } = this.state;
+
+        const modal = (
+            <ModalRoot
+                activeModal={this.state.activeModal}
+                onClose={this.modalBack}
+            >
+                <ModalPage
+                    id='chooseCity'
+                    onClose={this.modalBack}
+                    header={
+                        <ModalPageHeader
+                          left={<PanelHeaderClose onClick={this.modalBack}/>}
+                          right={<PanelHeaderSubmit onClick={() => {
+                                if (document.getElementById('city') != null) {
+                                    this.updateGeoData(document.getElementById('city').value);
+                                }  
+                          }}/>}
+                        >
+                          Выбрать город
+                        </ModalPageHeader>
+                      }
+                >
+                    <FormLayout>
+                        <FormItem top='Введите название'>
+                            <Input id='city' placeholder={weather.name} />
+                        </FormItem>
+                    </FormLayout> 
+                </ModalPage>
+            </ModalRoot>
+        );
+
         if (error) {
             return (
                 <View
@@ -146,15 +246,22 @@ class App extends React.Component {
 					onSwipeBack={this.goBack}
 					history={this.state.history}
 					activePanel={this.state.activePanel}
+                    modal={modal}
 				>
                     <Panel id='main'>
                         <div className='mainGradient'>
                             <div className='cityWrap'>
-                                <h1 className='city'>{weather.name}</h1>
+                                <h1 className='city' onClick={() => this.setActiveModal('chooseCity')}>{weather.name}</h1>
                             </div>
-                            <h1>Сегодня {this.toNormalDate(weather.dt)}</h1>
-                            <h2 className='mainTemp'>{Math.round(weather.main.temp)}°C</h2>
-                            <h3 className='mainFeels'>Ощущается как {Math.round(weather.main.feels_like)}°C</h3>
+                            <div className='currentWrap'>
+                                <div className='today'>
+                                    <h1 className='todayString'>Сегодня {this.getTime(weather.dt).string}</h1>
+                                    <h1 className='todayDate'>{this.toNormalDate(weather.dt)}</h1>
+                                </div>
+                                <h2 className='mainTemp'>{Math.round(weather.main.temp)}°C</h2>
+                                <h3 className='mainFeels'>Ощущается как {Math.round(weather.main.feels_like)}°C</h3>
+                                <h4 className='mainWeather'>На улице {weather.weather[0].description}</h4>
+                            </div>
                         </div>
                     </Panel>
                 </View>
