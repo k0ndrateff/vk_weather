@@ -56,7 +56,7 @@ h1 {
     font-weight: 700;
     font-size: 4.3em;
     text-align: center;
-    color: rgb(255, 193, 142);
+    color: #ED1F47;
     padding-bottom: 0;
     margin-top: 7%;
 }
@@ -66,7 +66,7 @@ h1 {
     font-weight: 700;
     font-size: 1.5em;
     text-align: center;
-    color: rgb(255, 193, 142);
+    color: #ED1F47;
 }
 
 .mainWeather {
