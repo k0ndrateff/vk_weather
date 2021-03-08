@@ -91,7 +91,7 @@ h1 {
 
 .today {
     position: relative;
-    height: 100%;
+    height: 50px;
 }
 
 .todayString {
