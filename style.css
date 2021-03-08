@@ -62,7 +62,7 @@ h1 {
 }
 
 .mainFeels {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Raleway', sans-serif;
     font-weight: 700;
     font-size: 1.5em;
     text-align: center;
@@ -71,7 +71,7 @@ h1 {
 
 .mainWeather {
     position: relative;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Raleway', sans-serif;
     font-weight: 700;
     font-size: 1.6em;
     text-align: center;
