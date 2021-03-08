@@ -112,3 +112,12 @@ h1 {
     margin-right: 10px;
     margin-top: 10px;
 }
+
+.emojiCurrent {
+    position: absolute;
+    top: 7%;
+    left: 2%;
+    z-index: -10;
+    transform: rotate(45deg);
+    font-size: 4em;
+}
