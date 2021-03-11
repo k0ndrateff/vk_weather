@@ -100,10 +100,10 @@ h1 {
 }
 
 .todayString {
+    display: inline-block;
     position: relative;
     font-size: 1.6em;
     text-align: left;
-    float: left;
     margin-left: 10px;
     margin-top: 10px;
 }
