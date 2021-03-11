@@ -90,6 +90,10 @@ h1 {
     z-index: 3;
 }
 
+.wrapTop {
+    margin-top: 15px;
+}
+
 .today {
     position: relative;
     height: 75px;
@@ -134,4 +138,6 @@ h1 {
 .laterTime {
     font-family: 'Comfortaa', cursive;
     font-family: 1em;
+    text-align: center;
+    color: white;
 }
