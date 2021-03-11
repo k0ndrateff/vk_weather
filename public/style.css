@@ -90,16 +90,20 @@ h1 {
     z-index: 3;
 }
 
+.wrapTop {
+    margin-top: 15px;
+}
+
 .today {
     position: relative;
     height: 75px;
 }
 
 .todayString {
+    display: inline-block;
     position: relative;
     font-size: 1.6em;
     text-align: left;
-    float: left;
     margin-left: 10px;
     margin-top: 10px;
 }
@@ -112,4 +116,28 @@ h1 {
     float: right;
     margin-right: 10px;
     margin-top: 10px;
+}
+
+.laterBoxes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+.laterTemp {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 1.5em;
+    text-align: center;
+    color: #f8d573;
+}
+
+.laterTime {
+    font-family: 'Comfortaa', cursive;
+    font-family: 1em;
+    text-align: center;
+    color: white;
 }
