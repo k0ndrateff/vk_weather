@@ -118,7 +118,7 @@ h1 {
     margin-top: 10px;
 }
 
-.laterBoxes {
+.boxes {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -139,5 +139,19 @@ h1 {
     font-family: 'Comfortaa', cursive;
     font-family: 1em;
     text-align: center;
+    color: white;
+}
+
+.forecastHeader {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.6em;
+    color: white;
+}
+
+.fore {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1em;
     color: white;
 }
