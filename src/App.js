@@ -182,8 +182,16 @@ class App extends React.Component {
     }
 
     render() {
-        const { error, isLoaded, weather, hourly } = this.state;
+        const { error, isLoaded, weather, hourly, forecast } = this.state;
 
+        let fore_weather = [...forecast].map((day) => (
+            <div className="boxes">
+                <p className="fore">{this.toNormalDate(day.dt)}</p>
+                <p className="fore">{day.weather[0].main}</p>
+                <p className="fore">{Math.round(day.temp.day)}°C</p>
+            </div>
+        ));
+        
         const modal = (
             <ModalRoot
                 activeModal={this.state.activeModal}
@@ -222,7 +230,7 @@ class App extends React.Component {
                     activePanel={this.state.activePanel}
                 >
                     <Panel id='main'>
-                        <div className='mainGradient'>
+                        <div className='mainGradient fullHeight'>
                             <h1>Ошибка :(</h1>
                             <p>{error.message}</p>
                         </div>
@@ -237,7 +245,7 @@ class App extends React.Component {
                     activePanel={this.state.activePanel}
                 >
                     <Panel id='main'>
-                        <div className='mainGradient'>
+                        <div className='mainGradient fullHeight'>
                             <h1 className='loadingText'>Загрузка...</h1>
                             <img src={LoadingImage} />
                         </div>
@@ -268,7 +276,7 @@ class App extends React.Component {
                             </div>
                             <div className="currentWrap wrapTop">
                                 <h1 className='todayString'>Позже</h1>
-                                <div className="laterBoxes">
+                                <div className="boxes">
                                     <div className="laterBox">
                                         <h3 className='laterTemp'>{Math.round(hourly[1].temp)}°C</h3>
                                         <h3 className='laterTime'>{this.getTime(hourly[1].dt).hour}:{this.getTime(hourly[1].dt).minute}</h3>
@@ -286,6 +294,10 @@ class App extends React.Component {
                                         <h3 className='laterTime'>{this.getTime(hourly[18].dt).hour}:{this.getTime(hourly[18].dt).minute}</h3>
                                     </div>
                                 </div>
+                            </div>
+                            <div className='currentWrap wrapTop'>
+                                <h1 className='todayString'>На неделе</h1>
+                                {fore_weather}
                             </div>
                         </div>
                     </Panel>

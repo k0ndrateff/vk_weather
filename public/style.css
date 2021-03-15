@@ -12,8 +12,12 @@ h1 {
 
 .mainGradient {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background: linear-gradient(rgb(255, 187, 0), rgb(252, 55, 5));
+}
+
+.fullHeight {
+    height: 100vh;
 }
 
 .loadingText {
@@ -118,11 +122,11 @@ h1 {
     margin-top: 10px;
 }
 
-.laterBoxes {
+.boxes {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: stretch;
     align-content: stretch;
 }
@@ -133,6 +137,7 @@ h1 {
     font-size: 1.5em;
     text-align: center;
     color: #f8d573;
+    padding: 10px 10px 10px 10px;
 }
 
 .laterTime {
@@ -140,4 +145,12 @@ h1 {
     font-family: 1em;
     text-align: center;
     color: white;
+}
+
+.fore {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 1em;
+    color: white;
+    padding: 10px 10px 10px 10px;
 }

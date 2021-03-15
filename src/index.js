@@ -6,4 +6,8 @@ import App from "./App";
 // Init VK  Mini App
 bridge.send("VKWebAppInit");
 
+addEventListener("VKWebAppUpdateConfig", (event) => {
+    console.log(event);
+})
+
 ReactDOM.render(<App />, document.getElementById("root"));
