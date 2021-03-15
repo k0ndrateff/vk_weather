@@ -137,6 +137,7 @@ h1 {
     font-size: 1.5em;
     text-align: center;
     color: #f8d573;
+    padding: 10px 10px 10px 10px;
 }
 
 .laterTime {
@@ -148,6 +149,8 @@ h1 {
 
 .fore {
     font-family: 'Comfortaa', cursive;
+    font-weight: 700;
     font-size: 1em;
     color: white;
+    padding: 10px 10px 10px 10px;
 }
