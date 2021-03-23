@@ -68,10 +68,16 @@ h2 {
 .laterTime {
     font-size: 1.5em;
     margin: 15px 15px -10px 15px;
+    font-weight: 500;
 }
 
 .laterTemp {
     font-size: 3em;
     margin: 0 10px 0 10px;
     text-align: right;
+}
+
+.foreBack {
+    background-color: #ef9000;
+    border-radius: 15px;
 }
