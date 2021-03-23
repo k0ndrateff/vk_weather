@@ -34,7 +34,7 @@ h2 {
 .city {
     font-family: 'Rubik', cursive;
     font-weight: 500;
-    font-size: 2em;
+    font-size: 2.2em;
     text-decoration: underline dotted;
     text-align: left;
 }
@@ -45,6 +45,6 @@ h2 {
 
 .displayText {
     text-align: left;
-    font-size: 2.2em;
+    font-size: 2em;
     font-weight: 800;
 }
