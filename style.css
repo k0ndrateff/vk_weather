@@ -49,3 +49,13 @@ h2 {
     font-size: 1.9em;
     font-weight: 800;
 }
+
+.horizontalWrap {
+    width: 100vw;
+}
+
+.box {
+    width: 50em;
+    height: 60px;
+    color: white;
+}
