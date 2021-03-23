@@ -61,7 +61,15 @@ h2 {
 }
 
 .laterBox {
-    color: #9b1857;
+    background-color: #9b1857;
     border-radius: 10px;
-    text-align: center;
+}
+
+.laterTime {
+    font-size: 1.2em;
+    margin-bottom: -1px;
+}
+
+.laterTemp {
+    font-size: 2em;
 }
