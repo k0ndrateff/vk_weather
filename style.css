@@ -59,3 +59,8 @@ h2 {
 	align-items: stretch;
 	align-content: stretch;
 }
+
+.laterBox {
+    color: #9b1857;
+    border-radius: 10px;
+}
