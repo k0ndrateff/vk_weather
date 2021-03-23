@@ -24,6 +24,7 @@ h1 {
     font-weight: 500;
     font-size: 2em;
     text-decoration: underline dotted;
+    text-align: left;
 }
 
 .city:hover {
