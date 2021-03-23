@@ -67,9 +67,13 @@ h2 {
 
 .laterTime {
     font-size: 1.2em;
-    margin-bottom: -1px;
+    margin-bottom: 0;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .laterTemp {
-    font-size: 2em;
+    font-size: 3.5em;
+    margin-top: 0;
+    margin-left: 10px;
 }
