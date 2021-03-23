@@ -37,7 +37,6 @@ h2 {
     font-size: 2.2em;
     text-decoration: underline dotted;
     text-align: left;
-    margin-top: -10px;
 }
 
 .city:hover {
@@ -48,6 +47,7 @@ h2 {
     text-align: left;
     font-size: 1.9em;
     font-weight: 800;
+    margin-top: -5px;
 }
 
 .horizontalWrap {
