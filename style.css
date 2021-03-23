@@ -66,21 +66,15 @@ h2 {
 }
 
 .laterTime {
-    font-size: 1.4em;
+    font-size: 1.5em;
     margin-bottom: -10px;
     margin-left: 10px;
     margin-right: 10px;
 }
 
 .laterTemp {
-    font-size: 3.5em;
+    font-size: 3em;
     margin-top: 0;
     margin-left: 10px;
     margin-bottom: 0;
-}
-
-.laterMini {
-    font-size: 1em;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
 }
