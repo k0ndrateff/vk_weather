@@ -73,4 +73,5 @@ h2 {
 .laterTemp {
     font-size: 3em;
     margin: 0 10px 0 10px;
+    text-align: right;
 }
