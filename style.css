@@ -80,4 +80,9 @@ h2 {
 .foreBack {
     background-color: #ef9000;
     border-radius: 15px;
+    margin-bottom: 2%;
+}
+
+.fore {
+    margin: 0 10px 0 10px;
 }
