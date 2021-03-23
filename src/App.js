@@ -1,7 +1,7 @@
 import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
-import { Panel, View, ModalRoot, ModalPage, ModalPageHeader, PanelHeaderClose, PanelHeaderSubmit, FormItem, Input, FormLayout } from '@vkontakte/vkui';
+import { Panel, View, ModalRoot, ModalPage, ModalPageHeader, PanelHeaderClose, PanelHeaderSubmit, FormItem, Input, FormLayout, HorizontalScroll, HorizontalCell } from '@vkontakte/vkui';
 
 import LoadingImage from './img/loading.svg';
 
@@ -181,14 +181,35 @@ class App extends React.Component {
         })
     }
 
+    lookupWeather = (weather) => {
+         const list = {
+            'Thunderstorm': 'шторм',
+            'Drizzle': 'дождик',
+            'Rain': 'дождь',
+            'Snow': 'снег',
+            'Mist': 'туман',
+            'Smoke': 'смог',
+            'Haze': 'дымка',
+            'Dust': 'пыль',
+            'Fog': 'туман',
+            'Sand': 'песок',
+            'Ash': 'задымление',
+            'Squall': 'шквал',
+            'Tornado': 'торнадо',
+            'Clear': 'ясно',
+            'Clouds': 'облачно'
+        };
+        return list[weather];
+    }
+
     render() {
         const { error, isLoaded, weather, hourly, forecast } = this.state;
 
         let fore_weather = [...forecast].map((day) => (
-            <div className="boxes">
-                <p className="fore">{this.toNormalDate(day.dt)}</p>
-                <p className="fore">{day.weather[0].main}</p>
-                <p className="fore">{Math.round(day.temp.day)}°C</p>
+            <div className="laterBoxes foreBack">
+                <h2 className="fore">{this.toNormalDate(day.dt)}</h2>
+                <h2 className="fore">{this.lookupWeather(day.weather[0].main)}</h2>
+                <h2 className="fore">{Math.round(day.temp.day)}°C</h2>
             </div>
         ));
         
@@ -262,41 +283,26 @@ class App extends React.Component {
 				>
                     <Panel id='main'>
                         <div className='mainGradient'>
-                            <div className='cityWrap'>
+                            <div className='wrapper'>
                                 <h1 className='city' onClick={() => this.setActiveModal('chooseCity')}>{weather.name}</h1>
-                            </div>
-                            <div className='currentWrap'>
-                                <div className='today'>
-                                    <h1 className='todayString'>Сейчас</h1>
-                                    <h1 className='todayDate'>{this.toNormalDate(weather.dt)}</h1>
-                                </div>
-                                <h2 className='mainTemp'>{Math.round(weather.main.temp)}°C</h2>
-                                <h3 className='mainFeels'>Ощущается как {Math.round(weather.main.feels_like)}°C</h3>
-                                <h4 className='mainWeather'>На улице {weather.weather[0].description}</h4>
-                            </div>
-                            <div className="currentWrap wrapTop">
-                                <h1 className='todayString'>Позже</h1>
-                                <div className="boxes">
-                                    <div className="laterBox">
-                                        <h3 className='laterTemp'>{Math.round(hourly[1].temp)}°C</h3>
-                                        <h3 className='laterTime'>{this.getTime(hourly[1].dt).hour}:{this.getTime(hourly[1].dt).minute}</h3>
-                                 </div>
-                                    <div className="laterBox">
-                                        <h3 className='laterTemp'>{Math.round(hourly[6].temp)}°C</h3>
-                                        <h3 className='laterTime'>{this.getTime(hourly[6].dt).hour}:{this.getTime(hourly[6].dt).minute}</h3>
+                                <h1 className='displayText'>Сегодня {this.toNormalDate(weather.dt)}</h1>
+                                <h2>Температура: {Math.round(weather.main.temp)}°C</h2>
+                                <h2>Ощущается как {Math.round(weather.main.feels_like)}°C</h2>
+                                <div className='laterBoxes'>
+                                    <div className='laterBox'>
+                                        <h2 className='laterTime'>{this.getTime(hourly[1].dt).time}</h2>
+                                        <h2 className='laterTemp'>{Math.round(hourly[1].temp)}°</h2>
                                     </div>
-                                    <div className="laterBox">
-                                        <h3 className='laterTemp'>{Math.round(hourly[12].temp)}°C</h3>
-                                        <h3 className='laterTime'>{this.getTime(hourly[12].dt).hour}:{this.getTime(hourly[12].dt).minute}</h3>
+                                    <div className='laterBox'>
+                                        <h2 className='laterTime'>{this.getTime(hourly[6].dt).time}</h2>
+                                        <h2 className='laterTemp'>{Math.round(hourly[6].temp)}°</h2>
                                     </div>
-                                    <div className="laterBox">
-                                        <h3 className='laterTemp'>{Math.round(hourly[18].temp)}°C</h3>
-                                        <h3 className='laterTime'>{this.getTime(hourly[18].dt).hour}:{this.getTime(hourly[18].dt).minute}</h3>
+                                    <div className='laterBox'>
+                                        <h2 className='laterTime'>{this.getTime(hourly[12].dt).time}</h2>
+                                        <h2 className='laterTemp'>{Math.round(hourly[12].temp)}°</h2>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='currentWrap wrapTop'>
-                                <h1 className='todayString'>На неделе</h1>
+                                <h1 className='displayText'>На неделе</h1>
                                 {fore_weather}
                             </div>
                         </div>
