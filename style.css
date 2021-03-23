@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
 
 h1 { 
-    font-family: 'Raleway', sans-serif;
-    font-weight: 900;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
     font-size: 2em;
     text-align: center;
     color: white;
@@ -13,30 +12,11 @@ h1 {
 .mainGradient {
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgb(255, 187, 0), rgb(252, 55, 5));
+    background: linear-gradient(#ef9000, #9b1857);
 }
 
 .fullHeight {
     height: 100vh;
-}
-
-.loadingText {
-    animation: loading 1s infinite;
-}
-
-@keyframes loading {
-    0% {
-        content: 'Загрузка';
-    }
-    33% {
-        content: 'Загрузка.';
-    }
-    66% {
-        content: 'Загрузка..';
-    }
-    100% {
-        content: 'Загрузка...'
-    }
 }
 
 .city {
@@ -53,104 +33,4 @@ h1 {
 .cityWrap {
     width: 75%;
     margin-bottom: 5%;
-}
-
-.mainTemp {
-    font-family: 'Comfortaa', cursive;
-    font-weight: 700;
-    font-size: 4.3em;
-    text-align: center;
-    color: #f8d573;
-    padding-bottom: 0;
-    margin-top: 7%;
-}
-
-.mainFeels {
-    font-family: 'Comfortaa', cursive;
-    font-weight: 700;
-    font-size: 1.45em;
-    text-align: center;
-    color: #f8d573;
-}
-
-.mainWeather {
-    position: relative;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 700;
-    font-size: 1.6em;
-    text-align: center;
-    color: white;
-}
-
-.currentWrap {
-    width: 90%;
-    margin: 0 auto;
-    background: rgba( 255, 255, 255, 0.25 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    z-index: 3;
-}
-
-.wrapTop {
-    margin-top: 15px;
-}
-
-.today {
-    position: relative;
-    height: 75px;
-}
-
-.todayString {
-    display: inline-block;
-    position: relative;
-    font-size: 1.6em;
-    text-align: left;
-    margin-left: 10px;
-    margin-top: 10px;
-}
-
-.todayDate {
-    position: relative;
-    display: inline;
-    font-size: 1.6em;
-    text-align: right;
-    float: right;
-    margin-right: 10px;
-    margin-top: 10px;
-}
-
-.boxes {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: stretch;
-    align-content: stretch;
-}
-
-.laterTemp {
-    font-family: 'Comfortaa', cursive;
-    font-weight: 700;
-    font-size: 1.5em;
-    text-align: center;
-    color: #f8d573;
-    padding: 10px 10px 10px 10px;
-}
-
-.laterTime {
-    font-family: 'Comfortaa', cursive;
-    font-family: 1em;
-    text-align: center;
-    color: white;
-}
-
-.fore {
-    font-family: 'Comfortaa', cursive;
-    font-weight: 700;
-    font-size: 1em;
-    color: white;
-    padding: 10px 10px 10px 10px;
 }
