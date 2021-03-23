@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;700&display=swap');
 
 h1 { 
     font-family: 'Rubik', sans-serif;
@@ -7,6 +7,13 @@ h1 {
     text-align: center;
     color: white;
     margin-bottom: 0;
+}
+
+h2 { 
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    font-size: 1.5em;
+    color: white;
 }
 
 .mainGradient {
@@ -26,7 +33,7 @@ h1 {
 
 .city {
     font-family: 'Rubik', cursive;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 2em;
     text-decoration: underline dotted;
     text-align: left;
