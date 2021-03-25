@@ -62,7 +62,7 @@ h2 {
     display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: stretch;
 	align-content: stretch;
 }
@@ -93,4 +93,8 @@ h2 {
 .fore {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.cityUnder {
+    margin-top: -10px;
 }
