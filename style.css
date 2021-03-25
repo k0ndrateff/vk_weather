@@ -28,6 +28,7 @@ h2 {
 }
 
 .loading {
+    background: linear-gradient(#ef9000, #9b1857);
     position: fixed;
     top: 0;
     left: 0;
