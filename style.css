@@ -98,5 +98,5 @@ h2 {
 .cityUnder {
     margin-top: -2%;
     font-weight: 500;
-    color: gray;
+    opacity: 80%;
 }
