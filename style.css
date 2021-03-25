@@ -98,5 +98,8 @@ h2 {
 .cityUnder {
     margin-top: -3%;
     font-weight: 500;
+}
+
+.faded {
     opacity: 80%;
 }
