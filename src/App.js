@@ -3,13 +3,14 @@ import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
 import { Panel, View, ModalRoot, ModalPage, ModalPageHeader, PanelHeaderClose, PanelHeaderSubmit, FormItem, Input, FormLayout, HorizontalScroll, HorizontalCell } from '@vkontakte/vkui';
 
-import LoadingImage from './img/loading.svg';
+import LoadingImage from './img/loading.png';
+import ErrorImage from './img/error.png';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: null,
+            error: false,
             isLoaded: false,
             weather: '',
             forecast: '',
@@ -51,7 +52,7 @@ class App extends React.Component {
                         .then(res => res.json())
                         .then((result) => {
                             this.setState({
-                                isLoaded: true,
+                                isLoaded: true, 
                                 forecast: result.daily.slice(1),
                                 hourly: result.hourly
                             });
@@ -126,6 +127,8 @@ class App extends React.Component {
         let hour = date.getHours();
         let minute = date.getMinutes();
         let time = 'утром';
+        const week = ['Вс', 'Пн', 'Вт', 'Cр', 'Чт', 'Пт', 'Сб'];
+        let dayOfWeek = week[date.getDay()];
         if (hour < 5 || hour > 22) { time = 'ночью' } else if (hour > 18) { time = 'вечером' } else if (hour > 10) { time = 'днём' }
         if (hour < 10) { hour = '0' + hour; }
         if (minute < 10) { minute = '0' + minute; }
@@ -133,7 +136,8 @@ class App extends React.Component {
             hour: hour,
             minute: minute,
             time: hour + ':' + minute,
-            string: time
+            string: time,
+            day: dayOfWeek
         }
         return res
     }
@@ -181,6 +185,13 @@ class App extends React.Component {
         })
     }
 
+    getCityValue = () => {
+        if (document.getElementById('city') != null) {
+            return document.getElementById('city').value;
+        } 
+        else { return null }
+    }
+
     lookupWeather = (weather) => {
          const list = {
             'Thunderstorm': 'шторм',
@@ -205,12 +216,32 @@ class App extends React.Component {
     render() {
         const { error, isLoaded, weather, hourly, forecast } = this.state;
 
+        const WeatherPanel = (weather) => { 
+            return (
+                <Panel id={weather.dt}>
+                    <div className='mainGradient fullHeight'>
+                        <div className='wrapper'>
+                            <h1 className='city' onClick={() => this.goBack() }>Назад</h1>
+                            <h1 className='displayText'>Погода {this.toNormalDate(weather.dt)} <span className='faded'>{this.getTime(weather.dt).day}</span></h1>
+                            <h2 className='cityUnder faded'>в городе {this.state.weather.name}</h2>
+                            <h2>{weather.weather[0].description}</h2> 
+                            <h2>Температура: {Math.round(weather.temp.day)}°C</h2>
+                            <h2>Ощущается как {Math.round(weather.feels_like.day)}°C</h2>
+                        </div>
+                    </div>
+                </Panel>
+        );};
+
         let fore_weather = [...forecast].map((day) => (
-            <div className="laterBoxes foreBack">
+            <div className="laterBoxes foreBack faded" onClick={() => this.goForward(day.dt) } >
                 <h2 className="fore">{this.toNormalDate(day.dt)}</h2>
                 <h2 className="fore">{this.lookupWeather(day.weather[0].main)}</h2>
                 <h2 className="fore">{Math.round(day.temp.day)}°C</h2>
             </div>
+        ));
+
+        let fore_panels = [...forecast].map((day) => (
+            WeatherPanel(day)
         ));
         
         const modal = (
@@ -224,11 +255,7 @@ class App extends React.Component {
                     header={
                         <ModalPageHeader
                           left={<PanelHeaderClose onClick={this.modalBack}/>}
-                          right={<PanelHeaderSubmit onClick={() => {
-                                if (document.getElementById('city') != null) {
-                                    this.updateGeoData(document.getElementById('city').value);
-                                }  
-                          }}/>}
+                          right={<PanelHeaderSubmit onClick={() => { this.updateGeoData(this.getCityValue()); }}/>}
                         >
                           Выбрать город
                         </ModalPageHeader>
@@ -241,7 +268,7 @@ class App extends React.Component {
                     </FormLayout> 
                 </ModalPage>
             </ModalRoot>
-        );
+        ); 
 
         if (error) {
             return (
@@ -252,8 +279,7 @@ class App extends React.Component {
                 >
                     <Panel id='main'>
                         <div className='mainGradient fullHeight'>
-                            <h1>Ошибка :(</h1>
-                            <p>{error.message}</p>
+                            <img src={ErrorImage}  className='loading' />
                         </div>
                     </Panel>
                 </View>
@@ -267,8 +293,7 @@ class App extends React.Component {
                 >
                     <Panel id='main'>
                         <div className='mainGradient fullHeight'>
-                            <h1 className='loadingText'>Загрузка...</h1>
-                            <img src={LoadingImage} />
+                            <img src={LoadingImage}  className='loading' />
                         </div>
                     </Panel>
                 </View>
@@ -286,18 +311,19 @@ class App extends React.Component {
                             <div className='wrapper'>
                                 <h1 className='city' onClick={() => this.setActiveModal('chooseCity')}>{weather.name}</h1>
                                 <h1 className='displayText'>Сегодня {this.toNormalDate(weather.dt)}</h1>
+                                <h2>Погода: {weather.weather[0].description}</h2> 
                                 <h2>Температура: {Math.round(weather.main.temp)}°C</h2>
                                 <h2>Ощущается как {Math.round(weather.main.feels_like)}°C</h2>
                                 <div className='laterBoxes'>
-                                    <div className='laterBox'>
+                                    <div className='laterBox faded'>
                                         <h2 className='laterTime'>{this.getTime(hourly[1].dt).time}</h2>
                                         <h2 className='laterTemp'>{Math.round(hourly[1].temp)}°</h2>
                                     </div>
-                                    <div className='laterBox'>
+                                    <div className='laterBox faded'>
                                         <h2 className='laterTime'>{this.getTime(hourly[6].dt).time}</h2>
                                         <h2 className='laterTemp'>{Math.round(hourly[6].temp)}°</h2>
                                     </div>
-                                    <div className='laterBox'>
+                                    <div className='laterBox faded'>
                                         <h2 className='laterTime'>{this.getTime(hourly[12].dt).time}</h2>
                                         <h2 className='laterTemp'>{Math.round(hourly[12].temp)}°</h2>
                                     </div>
@@ -307,6 +333,7 @@ class App extends React.Component {
                             </div>
                         </div>
                     </Panel>
+                    {fore_panels}
                 </View>
             );
         }
