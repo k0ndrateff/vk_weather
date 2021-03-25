@@ -27,6 +27,13 @@ h2 {
     height: 100vh;
 }
 
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 .wrapper {
     margin-left: 5%;
     margin-right: 5%;
@@ -86,4 +93,13 @@ h2 {
 .fore {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.cityUnder {
+    margin-top: -3%;
+    font-weight: 500;
+}
+
+.faded {
+    opacity: 80%;
 }
