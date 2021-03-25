@@ -28,8 +28,7 @@ h2 {
 }
 
 .loading {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
 }
 
 .wrapper {
