@@ -27,6 +27,11 @@ h2 {
     height: 100vh;
 }
 
+.loading {
+    width: 100vw;
+    height: 100vh;
+}
+
 .wrapper {
     margin-left: 5%;
     margin-right: 5%;
