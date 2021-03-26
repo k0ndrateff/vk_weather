@@ -110,15 +110,15 @@ h2 {
 
 @keyframes loadingWeather {
     0% {
-        z-index: 10;
+        z-index: 100;
     }
     50% {
-        z-index: 10;
+        z-index: 100;
     }
     99% {
-        z-index: 10;
+        z-index: 100;
     }
     100% {
-        z-index: -20;
+        z-index: -200;
     }
 }
