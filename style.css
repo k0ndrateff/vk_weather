@@ -114,3 +114,9 @@ h2 {
 .preload {
     display: none;
 }
+
+@media screen and (min-width: 600px) {
+    .varWidth {
+        width: 100%;
+    }
+}
