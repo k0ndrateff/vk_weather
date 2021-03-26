@@ -1,10 +1,13 @@
 import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
-import { Panel, View, ModalRoot, ModalPage, ModalPageHeader, PanelHeaderClose, PanelHeaderSubmit, FormItem, Input, FormLayout, HorizontalScroll, HorizontalCell } from '@vkontakte/vkui';
+import { Panel, View, ModalRoot, ModalPage, ModalPageHeader, PanelHeaderClose, PanelHeaderSubmit, FormItem, Input, FormLayout, HorizontalScroll, HorizontalCell, Group, List, Cell } from '@vkontakte/vkui';
 
-import LoadingImage from './img/loading.png';
+import LoadingImage from './img/loading.gif';
 import ErrorImage from './img/error.png';
+import ClearImage from './img/clear.png';
+import RainImage from './img/rain.png';
+import MistImage from './img/mist.png';
 
 class App extends React.Component {
     constructor(props) {
@@ -15,8 +18,8 @@ class App extends React.Component {
             weather: '',
             forecast: '',
             hourly: '',
-            activePanel: 'main',
-            history: ['main'],
+            activePanel: 'weatherImage',
+            history: ['weatherImage'],
             activeModal: null,
             modalHistory: []
         };
@@ -56,6 +59,7 @@ class App extends React.Component {
                                 forecast: result.daily.slice(1),
                                 hourly: result.hourly
                             });
+                            this.showWeatherImage();
                         },
                         (error) => {
                             this.setState({
@@ -144,45 +148,94 @@ class App extends React.Component {
 
     updateGeoData = (city) => {
         this.modalBack();
-        fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=e937bb61987a79d09b7604a3375a9941')
-            .then(res => res.json())
-            .then((result) => {
-                fetch("https://api.openweathermap.org/data/2.5/weather?lat="+ result[0].lat +"&lon=" + result[0].lon + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
-                    .then(res => res.json())
-                    .then((result) => {
-                        this.setState({ 
-                            weather: result
-                        });
-                    },
-                    (error) => {
-                        this.setState({
-                            isLoaded: true,
-                            error
-                    });
+        if (city === null || city === undefined) {
+            let lat = 0;
+            let long = 0;
+            bridge.send('VKWebAppGetGeodata')
+                .then(data => {
+                    if (data.error_type == 'client_error') {
+                        lat = 30;
+                        long = 50;
+                    }
+                    else {
+                        lat = data.lat;
+                        long = data.long;
+                    }
+                    fetch("https://api.openweathermap.org/data/2.5/weather?lat="+ lat +"&lon=" + long + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
+                        .then(res => res.json())
+                        .then((result) => {
+                            this.setState({ 
+                                weather: result
+                            });
+                        },
+                        (error) => {
+                            this.setState({
+                                isLoaded: true,
+                                error
+                            });
+                        })
+                    fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon=" + long + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
+                        .then(res => res.json())
+                        .then((result) => {
+                            this.setState({
+                                isLoaded: true, 
+                                forecast: result.daily.slice(1),
+                                hourly: result.hourly
+                            });
+                        },
+                        (error) => {
+                            this.setState({
+                                isLoaded: true,
+                                error
+                            });
+                        }
+                    )
                 })
-                fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+ result[0].lat +"&lon=" + result[0].lon + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
-                    .then(res => res.json())
-                    .then((result) => {
-                        this.setState({
-                            isLoaded: true,
-                            forecast: result.daily.slice(1),
-                            hourly: result.hourly
-                        });
-                    },
-                    (error) => {
-                        this.setState({
-                            isLoaded: true,
-                            error
+                .catch(error => {
+                    this.setState({ 
+                        isLoaded: true,
+                        error
                     });
-            }
-        )
-            },
+                });
+        } else {
+            fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=e937bb61987a79d09b7604a3375a9941')
+                .then(res => res.json())
+                .then((result) => {
+                    fetch("https://api.openweathermap.org/data/2.5/weather?lat="+ result[0].lat +"&lon=" + result[0].lon + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
+                        .then(res => res.json())
+                        .then((result) => {
+                            this.setState({ 
+                                weather: result
+                            });
+                        },
+                        (error) => {
+                            this.setState({
+                                isLoaded: true,
+                                error
+                            });
+                    })
+                    fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+ result[0].lat +"&lon=" + result[0].lon + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
+                        .then(res => res.json())
+                        .then((result) => {
+                            this.setState({
+                                isLoaded: true,
+                                forecast: result.daily.slice(1),
+                                hourly: result.hourly
+                            });
+                        },
+                        (error) => {
+                            this.setState({
+                                isLoaded: true,
+                                error
+                        });
+                        })},
             (error) => {
                 this.setState({
                     isLoaded: true,
                     error
                 });
-        })
+            })
+        }
     }
 
     getCityValue = () => {
@@ -211,6 +264,11 @@ class App extends React.Component {
             'Clouds': 'облачно'
         };
         return list[weather];
+    }
+
+    showWeatherImage = () => { 
+        this.goForward('weatherImage');
+        setTimeout(() => this.goForward('main'), 3000);
     }
 
     render() {
@@ -266,9 +324,50 @@ class App extends React.Component {
                             <Input id='city' placeholder={weather.name} />
                         </FormItem>
                     </FormLayout> 
+                    <Group>
+                        <List>
+                            <Cell onClick={() => { this.updateGeoData() }}>🏠 Геолокация</Cell>
+                            <Cell onClick={() => { this.updateGeoData('Москва') }}>🏰 Москва</Cell>
+                            <Cell onClick={() => { this.updateGeoData('Париж') }}>🗺 Париж</Cell>
+                            <Cell onClick={() => { this.updateGeoData('Нью-Йорк') }}>🗽 Нью-Йорк</Cell>
+                        </List>
+                    </Group>
                 </ModalPage>
             </ModalRoot>
         ); 
+
+        let weatherImage = (weather) => { 
+            if (weather.weather == undefined) {
+                switch (weather) {
+                    case 'rain':
+                        return RainImage;
+                    case 'clear':
+                        return ClearImage;
+                    case 'mist':
+                        return MistImage;
+                }
+            }
+            switch (weather.weather[0].main) {
+                case 'Thunderstorm':
+                case 'Drizzle':
+                case 'Rain':
+                case 'Snow':
+                case 'Squall':
+                case 'Tornado':
+                    return RainImage;
+                case 'Mist':
+                case 'Smoke':
+                case 'Haze':
+                case 'Dust':
+                case 'Fog':
+                case 'Sand':
+                case 'Ash':
+                    return MistImage;
+                case 'Clear':
+                case 'Clouds':
+                    return ClearImage;
+            }
+        };
 
         if (error) {
             return (
@@ -277,7 +376,7 @@ class App extends React.Component {
                     history={this.state.history}
                     activePanel={this.state.activePanel}
                 >
-                    <Panel id='main'>
+                    <Panel id='weatherImage'>
                         <div className='mainGradient fullHeight'>
                             <img src={ErrorImage}  className='loading' />
                         </div>
@@ -291,9 +390,12 @@ class App extends React.Component {
                     history={this.state.history}
                     activePanel={this.state.activePanel}
                 >
-                    <Panel id='main'>
+                    <Panel id='weatherImage'>
                         <div className='mainGradient fullHeight'>
                             <img src={LoadingImage}  className='loading' />
+                            <img src={weatherImage('rain')} className='fullHeight preload'></img>
+                            <img src={weatherImage('clear')} className='fullHeight preload'></img>
+                            <img src={weatherImage('mist')} className='fullHeight preload'></img>
                         </div>
                     </Panel>
                 </View>
@@ -334,6 +436,11 @@ class App extends React.Component {
                         </div>
                     </Panel>
                     {fore_panels}
+                    <Panel id='weatherImage'>
+                        <div className='mainGradient fullHeight'>
+                            <img src={weatherImage(weather)} className='fullHeight varWidth'></img>
+                        </div>
+                    </Panel>
                 </View>
             );
         }
