@@ -103,3 +103,22 @@ h2 {
 .faded {
     opacity: 80%;
 }
+
+.weatherAnim {
+    animation: loadingWeather 2s;
+}
+
+@keyframes loadingWeather {
+    0% {
+        z-index: 10;
+    }
+    50% {
+        z-index: 10;
+    }
+    99% {
+        z-index: 10;
+    }
+    100% {
+        z-index: -20;
+    }
+}
