@@ -1,9 +1,9 @@
 import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
-import { Panel, View, ModalRoot, ModalPage, ModalPageHeader, PanelHeaderClose, PanelHeaderSubmit, FormItem, Input, FormLayout, HorizontalScroll, HorizontalCell } from '@vkontakte/vkui';
+import { Panel, View, ModalRoot, ModalPage, ModalPageHeader, PanelHeaderClose, PanelHeaderSubmit, FormItem, Input, FormLayout, HorizontalScroll, HorizontalCell, Group, List, Cell } from '@vkontakte/vkui';
 
-import LoadingImage from './img/loading.png';
+import LoadingImage from './img/loading.gif';
 import ErrorImage from './img/error.png';
 
 class App extends React.Component {
@@ -266,6 +266,14 @@ class App extends React.Component {
                             <Input id='city' placeholder={weather.name} />
                         </FormItem>
                     </FormLayout> 
+                    <Group>
+                        <List>
+                            <Cell onClick={() => { this.updateGeoData('Москва') }}>Москва</Cell>
+                            <Cell onClick={() => { this.updateGeoData('Париж') }}>Париж</Cell>
+                            <Cell onClick={() => { this.updateGeoData('Вашингтон') }}>Вашингтон</Cell>
+                            <Cell onClick={() => { this.updateGeoData('Токио') }}>Токио</Cell>
+                        </List>
+                    </Group>
                 </ModalPage>
             </ModalRoot>
         ); 
