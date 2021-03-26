@@ -110,3 +110,7 @@ h2 {
 .faded {
     opacity: 80%;
 }
+
+.preload {
+    display: none;
+}
