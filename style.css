@@ -124,3 +124,7 @@ h2 {
         height: 130vh;
     }
 }
+
+.imageWrapper {
+    text-align: center;
+}
