@@ -110,21 +110,3 @@ h2 {
 .faded {
     opacity: 80%;
 }
-
-.weatherImage {
-    margin: 0 auto;
-    animation: weatherImage 3s;
-}
-
-@keyframes weatherImage {
-    from {
-        height: 100vh;
-    }
-    to {
-        height: 130vh;
-    }
-}
-
-.imageWrapper {
-    text-align: center;
-}
