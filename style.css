@@ -127,3 +127,8 @@ h2 {
     text-align: center;
     z-index: 100;
 }
+
+.aligner {
+    text-align: center;
+    align-items: center;
+}
