@@ -37,7 +37,7 @@ h2 {
 .loadingHeight {
     position: fixed;
     top: 0;
-    left: 0;
+    left: -5%;
     height: 100%;
 }
 
@@ -119,4 +119,11 @@ h2 {
     .varWidth {
         width: 100%;
     }
+}
+
+.errorMessage {
+    position: absolute;
+    top: 5%;
+    text-align: center;
+    z-index: 100;
 }
