@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/vk_weather/static/js/main.83fc0df2.chunk.js",
-    "main.js.map": "/vk_weather/static/js/main.83fc0df2.chunk.js.map",
+    "main.js": "/vk_weather/static/js/main.a3879714.chunk.js",
+    "main.js.map": "/vk_weather/static/js/main.a3879714.chunk.js.map",
     "runtime-main.js": "/vk_weather/static/js/runtime-main.b2de8d21.js",
     "runtime-main.js.map": "/vk_weather/static/js/runtime-main.b2de8d21.js.map",
     "static/css/2.92d02543.chunk.css": "/vk_weather/static/css/2.92d02543.chunk.css",
@@ -17,13 +17,12 @@
     "static/media/nightClear.fdaa924a.png": "/vk_weather/static/media/nightClear.fdaa924a.png",
     "static/media/nightRain.77d1efa6.png": "/vk_weather/static/media/nightRain.77d1efa6.png",
     "static/media/nightSnow.963b7cd9.png": "/vk_weather/static/media/nightSnow.963b7cd9.png",
-    "static/media/rain.cc74d3c5.png": "/vk_weather/static/media/rain.cc74d3c5.png",
-    "static/media/zhara.aac0f018.png": "/vk_weather/static/media/zhara.aac0f018.png"
+    "static/media/rain.cc74d3c5.png": "/vk_weather/static/media/rain.cc74d3c5.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b2de8d21.js",
     "static/css/2.92d02543.chunk.css",
     "static/js/2.200bdae2.chunk.js",
-    "static/js/main.83fc0df2.chunk.js"
+    "static/js/main.a3879714.chunk.js"
   ]
 }
