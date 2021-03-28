@@ -8,6 +8,9 @@ import ErrorImage from './img/error.png';
 import ClearImage from './img/clear.png';
 import RainImage from './img/rain.png';
 import MistImage from './img/mist.png';
+import NightClearImage from './img/nightClear.png';
+import NightRainImage from './img/nightRain.png';
+import NightSnowImage from './img/nightSnow.png';
 
 class App extends React.Component {
     constructor(props) {
@@ -182,6 +185,7 @@ class App extends React.Component {
                                 forecast: result.daily.slice(1),
                                 hourly: result.hourly
                             });
+                            this.showWeatherImage();
                         },
                         (error) => {
                             this.setState({
@@ -222,6 +226,7 @@ class App extends React.Component {
                                 forecast: result.daily.slice(1),
                                 hourly: result.hourly
                             });
+                            this.showWeatherImage();
                         },
                         (error) => {
                             this.setState({
@@ -337,14 +342,27 @@ class App extends React.Component {
         ); 
 
         let weatherImage = (weather) => { 
-            if (weather.weather == undefined) {
-                switch (weather) {
-                    case 'rain':
-                        return RainImage;
-                    case 'clear':
-                        return ClearImage;
-                    case 'mist':
+            if (this.getTime(weather.dt).hour > 20 || this.getTime(weather.dt).hour < 5) {
+                switch (weather.weather[0].main) {
+                    case 'Thunderstorm':
+                    case 'Drizzle':
+                    case 'Rain':
+                    case 'Squall':
+                    case 'Tornado':
+                        return NightRainImage;
+                    case 'Snow':    
+                        return NightSnowImage;
+                    case 'Mist':
+                    case 'Smoke':
+                    case 'Haze':
+                    case 'Dust':
+                    case 'Fog':
+                    case 'Sand':
+                    case 'Ash':
                         return MistImage;
+                    case 'Clear':
+                    case 'Clouds':
+                        return NightClearImage;
                 }
             }
             switch (weather.weather[0].main) {
@@ -377,8 +395,9 @@ class App extends React.Component {
                     activePanel={this.state.activePanel}
                 >
                     <Panel id='weatherImage'>
-                        <div className='mainGradient fullHeight'>
+                        <div className='mainGradient fullHeight aligner'>
                             <img src={ErrorImage}  className='loading' />
+                            <h1 className='errorMessage faded'>Упс... сломалось :(</h1>
                         </div>
                     </Panel>
                 </View>
@@ -393,9 +412,12 @@ class App extends React.Component {
                     <Panel id='weatherImage'>
                         <div className='mainGradient fullHeight'>
                             <img src={LoadingImage}  className='loading' />
-                            <img src={weatherImage('rain')} className='fullHeight preload'></img>
-                            <img src={weatherImage('clear')} className='fullHeight preload'></img>
-                            <img src={weatherImage('mist')} className='fullHeight preload'></img>
+                            <img src={RainImage} className='fullHeight preload'></img>
+                            <img src={ClearImage} className='fullHeight preload'></img>
+                            <img src={MistImage} className='fullHeight preload'></img>
+                            <img src={NightClearImage} className='fullHeight preload'></img>
+                            <img src={NightSnowImage} className='fullHeight preload'></img>
+                            <img src={NightRainImage} className='fullHeight preload'></img>
                         </div>
                     </Panel>
                 </View>
@@ -437,7 +459,7 @@ class App extends React.Component {
                     </Panel>
                     {fore_panels}
                     <Panel id='weatherImage'>
-                        <div className='mainGradient fullHeight'>
+                        <div className='mainGradient fullHeight aligner'>
                             <img src={weatherImage(weather)} className='fullHeight varWidth'></img>
                         </div>
                     </Panel>
