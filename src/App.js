@@ -276,6 +276,33 @@ class App extends React.Component {
         setTimeout(() => this.goForward('main'), 3000);
     }
 
+    toWindDirection = (deg) => {
+        if (deg >= 330 || deg <= 30) {
+            return 'северный';
+        }
+        else if (deg < 60) {
+            return 'северо-восточный';
+        }
+        else if (deg < 120) {
+            return 'восточный';
+        }
+        else if (deg < 150) {
+            return 'юго-восточный';
+        }
+        else if (deg < 210) {
+            return 'южный';
+        }
+        else if (deg < 240) {
+            return 'юго-западный';
+        }
+        else if (deg < 300) {
+            return 'западный';
+        }
+        else { 
+            return 'северо-западный';
+        }
+    }
+
     render() {
         const { error, isLoaded, weather, hourly, forecast } = this.state;
 
@@ -287,9 +314,12 @@ class App extends React.Component {
                             <h1 className='city' onClick={() => this.goBack() }>Назад</h1>
                             <h1 className='displayText'>Погода {this.toNormalDate(weather.dt)} <span className='faded'>{this.getTime(weather.dt).day}</span></h1>
                             <h2 className='cityUnder faded'>в городе {this.state.weather.name}</h2>
-                            <h2>{weather.weather[0].description}</h2> 
+                            <h2>Погода: {weather.weather[0].description}</h2> 
                             <h2>Температура: {Math.round(weather.temp.day)}°C</h2>
                             <h2>Ощущается как {Math.round(weather.feels_like.day)}°C</h2>
+                            <h2>Рассвет: {this.getTime(weather.sunrise).time}</h2>
+                            <h2>Закат: {this.getTime(weather.sunset).time}</h2>
+                            <h2>Ветер: {this.toWindDirection(weather.wind_deg)} {Math.round(weather.wind_speed)} м/c</h2>
                         </div>
                     </div>
                 </Panel>
@@ -434,7 +464,7 @@ class App extends React.Component {
                         <div className='mainGradient'>
                             <div className='wrapper'>
                                 <h1 className='city' onClick={() => this.setActiveModal('chooseCity')}>{weather.name}</h1>
-                                <h1 className='displayText'>Сегодня {this.toNormalDate(weather.dt)}</h1>
+                                <h1 className='displayText' onClick={() => this.goForward('now')}>Сегодня {this.toNormalDate(weather.dt)}</h1>
                                 <h2>Погода: {weather.weather[0].description}</h2> 
                                 <h2>Температура: {Math.round(weather.main.temp)}°C</h2>
                                 <h2>Ощущается как {Math.round(weather.main.feels_like)}°C</h2>
@@ -461,6 +491,21 @@ class App extends React.Component {
                     <Panel id='weatherImage'>
                         <div className='mainGradient fullHeight aligner'>
                             <img src={weatherImage(weather)} className='fullHeight varWidth'></img>
+                        </div>
+                    </Panel>
+                    <Panel id='now'>
+                        <div className='mainGradient fullHeight'>
+                            <div className='wrapper'>
+                                <h1 className='city' onClick={() => this.goBack() }>Назад</h1>
+                                <h1 className='displayText'>Погода сейчас</h1>
+                                <h2 className='cityUnder faded'>в городе {this.state.weather.name}</h2>
+                                <h2>Погода: {weather.weather[0].description}</h2> 
+                                <h2>Температура: {Math.round(weather.main.temp)}°C</h2>
+                                <h2>Ощущается как {Math.round(weather.main.feels_like)}°C</h2>
+                                <h2>Рассвет: {this.getTime(weather.sys.sunrise).time}</h2>
+                                <h2>Закат: {this.getTime(weather.sys.sunset).time}</h2>
+                                <h2>Ветер: {this.toWindDirection(weather.wind.deg)} {Math.round(weather.wind.speed)} м/c</h2>
+                            </div>
                         </div>
                     </Panel>
                 </View>
