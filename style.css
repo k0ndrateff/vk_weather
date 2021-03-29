@@ -98,6 +98,7 @@ h2 {
 }
 
 .fore {
+    font-size: 1.4em;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -131,9 +132,4 @@ h2 {
 .aligner {
     text-align: center;
     align-items: center;
-}
-
-.no-margins {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
 }
