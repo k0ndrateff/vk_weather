@@ -132,3 +132,8 @@ h2 {
     text-align: center;
     align-items: center;
 }
+
+.no-margins {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
