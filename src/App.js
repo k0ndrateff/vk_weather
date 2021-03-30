@@ -11,6 +11,7 @@ import MistImage from './img/mist.png';
 import NightClearImage from './img/nightClear.png';
 import NightRainImage from './img/nightRain.png';
 import NightSnowImage from './img/nightSnow.png';
+import NightLightRainImage from './img/nightLightRain.png';
 
 class App extends React.Component {
     constructor(props) {
@@ -374,9 +375,10 @@ class App extends React.Component {
         let weatherImage = (weather) => { 
             if (this.getTime(weather.dt).hour > 20 || this.getTime(weather.dt).hour < 5) {
                 switch (weather.weather[0].main) {
-                    case 'Thunderstorm':
                     case 'Drizzle':
                     case 'Rain':
+                        return NightLightRainImage;
+                    case 'Thunderstorm':
                     case 'Squall':
                     case 'Tornado':
                         return NightRainImage;
@@ -448,6 +450,7 @@ class App extends React.Component {
                             <img src={NightClearImage} className='fullHeight preload'></img>
                             <img src={NightSnowImage} className='fullHeight preload'></img>
                             <img src={NightRainImage} className='fullHeight preload'></img>
+                            <img src={NightLightRainImage} className='fullHeight preload'></img>
                         </div>
                     </Panel>
                 </View>
