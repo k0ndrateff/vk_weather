@@ -12,6 +12,11 @@ import NightClearImage from './img/nightClear.png';
 import NightRainImage from './img/nightRain.png';
 import NightSnowImage from './img/nightSnow.png';
 import NightLightRainImage from './img/nightLightRain.png';
+import AutumnCloudsImage from './img/autumnClouds.png';
+import SpringCloudsImage from './img/springClouds.png';
+import SummerCloudsImage from './img/summerClouds.png';
+import WinterCloudsImage from './img/winterClouds.png';
+import SpringClearImage from './img/springClear.png';
 
 class App extends React.Component {
     constructor(props) {
@@ -148,6 +153,21 @@ class App extends React.Component {
             day: dayOfWeek
         }
         return res
+    }
+
+    getSeason = (dt) => {
+        let date = new Date(dt * 1000);
+        let month = date.getMonth();
+        if (month == 12 || month <= 1) {
+            return 'winter';
+        } 
+        else if (month <= 4) {
+            return 'spring';
+        }
+        else if (month <= 7) {
+            return 'summer';
+        }
+        else { return 'autumn'; }
     }
 
     updateGeoData = (city) => {
@@ -307,6 +327,9 @@ class App extends React.Component {
     render() {
         const { error, isLoaded, weather, hourly, forecast } = this.state;
 
+        const IMAGES = [ClearImage, RainImage, MistImage, NightLightRainImage, NightRainImage, NightSnowImage, NightClearImage,
+                        AutumnCloudsImage, SpringClearImage, SpringCloudsImage, SummerCloudsImage, WinterCloudsImage];
+
         const WeatherPanel = (weather) => { 
             return (
                 <Panel id={weather.dt}>
@@ -414,10 +437,29 @@ class App extends React.Component {
                 case 'Ash':
                     return MistImage;
                 case 'Clear':
+                    switch (this.getSeason(weather.dt)) {
+                        case 'spring':
+                            return SpringClearImage;
+                        default:
+                            return ClearImage;
+                    }
                 case 'Clouds':
-                    return ClearImage;
+                    switch (this.getSeason(weather.dt)) {
+                        case 'spring':
+                            return SpringCloudsImage;
+                        case 'summer':
+                            return SummerCloudsImage;
+                        case 'autumn':
+                            return AutumnCloudsImage;
+                        case 'winter':
+                            return WinterCloudsImage;
+                    }
             }
         };
+
+        let imagesPreload = [...IMAGES].map((image) => (
+            <img src={image} className='fullHeight preload'></img>
+        ));
 
         if (error) {
             return (
@@ -444,13 +486,7 @@ class App extends React.Component {
                     <Panel id='weatherImage'>
                         <div className='mainGradient fullHeight'>
                             <img src={LoadingImage}  className='loading' />
-                            <img src={RainImage} className='fullHeight preload'></img>
-                            <img src={ClearImage} className='fullHeight preload'></img>
-                            <img src={MistImage} className='fullHeight preload'></img>
-                            <img src={NightClearImage} className='fullHeight preload'></img>
-                            <img src={NightSnowImage} className='fullHeight preload'></img>
-                            <img src={NightRainImage} className='fullHeight preload'></img>
-                            <img src={NightLightRainImage} className='fullHeight preload'></img>
+                            {imagesPreload}
                         </div>
                     </Panel>
                 </View>
