@@ -64,6 +64,10 @@ h2 {
     font-weight: 800;
 }
 
+.linky:hover {
+    color: rgb(252, 55, 5);
+}
+
 .laterBoxes {
     width: 100%;
     display: flex;
