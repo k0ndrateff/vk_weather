@@ -152,5 +152,10 @@ h2 {
 }
 
 .shareDiv {
-    margin-top: 7%;
+    margin-top: 12%;
+}
+
+.shareLink {
+    text-decoration: underline dotted;
+    font-weight: 500;
 }
