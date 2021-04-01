@@ -137,3 +137,11 @@ h2 {
     text-align: center;
     align-items: center;
 }
+
+.copyright {
+    font-size: 0.9em;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    color: white;
+}
