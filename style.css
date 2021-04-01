@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;700&effect=anaglyph&display=swap');
 
+:root {
+    overflow: hidden;
+}
+
 h1 { 
     font-family: 'Rubik', sans-serif;
     font-weight: 700;
@@ -149,5 +153,6 @@ h2 {
 
 .modalWeather {
     width: 100%;
-    border-radius: 25px;
+    border-radius: 25%;
+    margin-top: 30px;
 }
