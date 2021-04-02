@@ -31,7 +31,6 @@ class App extends React.Component {
             history: ['weatherImage'],
             activeModal: null,
             modalHistory: [],
-            help: 'share'
         };
     }
 
@@ -40,14 +39,8 @@ class App extends React.Component {
         let long = 0;
         bridge.send('VKWebAppGetGeodata')
                 .then(data => {
-                    if (data.error_type == 'client_error') {
-                        lat = 30;
-                        long = 50;
-                    }
-                    else {
-                        lat = data.lat;
-                        long = data.long;
-                    }
+                    lat = data.lat;
+                    long = data.long;
                     fetch("https://api.openweathermap.org/data/2.5/weather?lat="+ lat +"&lon=" + long + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
                         .then(res => res.json())
                         .then((result) => {
@@ -80,10 +73,7 @@ class App extends React.Component {
                     )
                 })
                 .catch(error => {
-                    this.setState({ 
-                        isLoaded: true,
-                        error
-                    });
+                    this.updateGeoData('Москва');
                 });
     }
 
@@ -178,14 +168,8 @@ class App extends React.Component {
             let long = 0;
             bridge.send('VKWebAppGetGeodata')
                 .then(data => {
-                    if (data.error_type == 'client_error') {
-                        lat = 30;
-                        long = 50;
-                    }
-                    else {
-                        lat = data.lat;
-                        long = data.long;
-                    }
+                    lat = data.lat;
+                    long = data.long;
                     fetch("https://api.openweathermap.org/data/2.5/weather?lat="+ lat +"&lon=" + long + "&units=metric&lang=ru&appid=e937bb61987a79d09b7604a3375a9941")
                         .then(res => res.json())
                         .then((result) => {
@@ -218,10 +202,7 @@ class App extends React.Component {
                     )
                 })
                 .catch(error => {
-                    this.setState({ 
-                        isLoaded: true,
-                        error
-                    });
+                    this.updateGeoData('Москва');
                 });
         } else {
             fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=e937bb61987a79d09b7604a3375a9941')
