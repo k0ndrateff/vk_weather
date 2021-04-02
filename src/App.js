@@ -339,12 +339,12 @@ class App extends React.Component {
                             <h1 className='city' onClick={() => this.goBack() }>Назад</h1>
                             <h1 className='displayText'>Погода {this.toNormalDate(weather.dt)} <span className='faded'>{this.getTime(weather.dt).day}</span></h1>
                             <h2 className='cityUnder faded'>в городе {this.state.weather.name}</h2>
-                            <h2>⛅️ Погода: {weather.weather[0].description}</h2> 
-                            <h2>🌡 Температура: {Math.round(weather.temp.day)}°C</h2>
-                            <h2>🤒 Ощущается как {Math.round(weather.feels_like.day)}°C</h2>
-                            <h2>🌅 Рассвет: {this.getTime(weather.sunrise).time}</h2>
-                            <h2>🌇 Закат: {this.getTime(weather.sunset).time}</h2>
-                            <h2>💨 Ветер: {this.toWindDirection(weather.wind_deg)} {Math.round(weather.wind_speed)} м/c</h2>
+                            <h2>Погода: {weather.weather[0].description}</h2> 
+                            <h2>Температура: {Math.round(weather.temp.day)}°C</h2>
+                            <h2>Ощущается как {Math.round(weather.feels_like.day)}°C</h2>
+                            <h2>Рассвет: {this.getTime(weather.sunrise).time}</h2>
+                            <h2>Закат: {this.getTime(weather.sunset).time}</h2>
+                            <h2>Ветер: {this.toWindDirection(weather.wind_deg)} {Math.round(weather.wind_speed)} м/c</h2>
                             <div className='shareDiv' onClick={() => bridge.send("VKWebAppShare", {"link": "https://vk.com/app7752385"}) }>
                                 <h2 className='shareLink linky'>Рассказать друзьям...</h2>
                             </div>
@@ -508,9 +508,9 @@ class App extends React.Component {
                             <div className='wrapper'>
                                 <h1 className='city' onClick={() => this.setActiveModal('chooseCity')}>{weather.name}</h1>
                                 <h1 className='displayText linky' onClick={() => this.goForward('now')}>Сегодня {this.toNormalDate(weather.dt)}</h1>
-                                <h2>⛅️ Погода: {weather.weather[0].description}</h2> 
-                                <h2>🌡 Температура: {Math.round(weather.main.temp)}°C</h2>
-                                <h2>🤒 Ощущается как {Math.round(weather.main.feels_like)}°C</h2>
+                                <h2>Погода: {weather.weather[0].description}</h2> 
+                                <h2>Температура: {Math.round(weather.main.temp)}°C</h2>
+                                <h2>Ощущается как {Math.round(weather.main.feels_like)}°C</h2>
                                 <div className='laterBoxes'>
                                     <div className='laterBox faded'>
                                         <h2 className='laterTime'>{this.getTime(hourly[1].dt).time}</h2>
@@ -529,7 +529,7 @@ class App extends React.Component {
                                 {fore_weather}
                                 <h3 className='copyright'>
                                     <a className='copyright' href='https://vk.com/k0ndrateff'>Разработка: Егор @k0ndrateff</a> •  
-                                    <a className='copyright' href='https://vk.com/malenkoe_zlo_alichka'>Дизайн: Алина @alinapics</a>
+                                    <a className='copyright' href='https://instagram.com/_alinapics_'>Дизайн: Алина @_alinapics_</a>
                                 </h3>
                             </div>
                         </div>
@@ -546,12 +546,12 @@ class App extends React.Component {
                                 <h1 className='city' onClick={() => this.goBack() }>Назад</h1>
                                 <h1 className='displayText'>Погода сейчас</h1>
                                 <h2 className='cityUnder faded'>в городе {this.state.weather.name}</h2>
-                                <h2>⛅️ Погода: {weather.weather[0].description}</h2> 
-                                <h2>🌡 Температура: {Math.round(weather.main.temp)}°C</h2>
-                                <h2>🤒 Ощущается как {Math.round(weather.main.feels_like)}°C</h2>
-                                <h2>🌅 Рассвет: {this.getTime(weather.sys.sunrise).time}</h2>
-                                <h2>🌇 Закат: {this.getTime(weather.sys.sunset).time}</h2>
-                                <h2>💨 Ветер: {this.toWindDirection(weather.wind.deg)} {Math.round(weather.wind.speed)} м/c</h2>
+                                <h2>Погода: {weather.weather[0].description}</h2> 
+                                <h2>Температура: {Math.round(weather.main.temp)}°C</h2>
+                                <h2>Ощущается как {Math.round(weather.main.feels_like)}°C</h2>
+                                <h2>Рассвет: {this.getTime(weather.sys.sunrise).time}</h2>
+                                <h2>Закат: {this.getTime(weather.sys.sunset).time}</h2>
+                                <h2>Ветер: {this.toWindDirection(weather.wind.deg)} {Math.round(weather.wind.speed)} м/c</h2>
                                 <div className='shareDiv' onClick={() => bridge.send("VKWebAppShare", {"link": "https://vk.com/app7752385"}) }>
                                     <h2 className='shareLink linky'>Рассказать друзьям...</h2>
                                 </div>
