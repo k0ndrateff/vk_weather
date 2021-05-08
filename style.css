@@ -32,10 +32,17 @@ h2 {
 }
 
 .loading {
-    position: fixed;
-    top: 0;
+    position: absolute;
+    margin: auto;
     left: 0;
-    width: 50%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.loadingWrapper {
+    height: 100vh;
+    position: relative;
 }
 
 .loadingHeight {
