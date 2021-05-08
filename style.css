@@ -32,17 +32,13 @@ h2 {
 }
 
 .loading {
-    position: absolute;
-    margin: auto;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
+    vertical-align: middle;
 }
 
 .loadingWrapper {
     height: 100vh;
-    position: relative;
+    line-height: 100vh;
+    text-align: center;
 }
 
 .loadingHeight {
