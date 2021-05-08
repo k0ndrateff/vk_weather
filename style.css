@@ -33,6 +33,7 @@ h2 {
 
 .loading {
     vertical-align: middle;
+    width: 50%;
 }
 
 .loadingWrapper {
