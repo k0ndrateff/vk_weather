@@ -3,20 +3,20 @@ import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
 import { Panel, View, ModalRoot, ModalPage, ModalPageHeader, PanelHeaderClose, PanelHeaderSubmit, FormItem, Input, FormLayout, HorizontalScroll, HorizontalCell, Group, List, Cell } from '@vkontakte/vkui';
 
-import LoadingImage from './img/loading.gif';
-import ErrorImage from './img/error.png';
-import ClearImage from './img/clear.png';
-import RainImage from './img/rain.png';
-import MistImage from './img/mist.png';
-import NightClearImage from './img/nightClear.png';
-import NightRainImage from './img/nightRain.png';
-import NightSnowImage from './img/nightSnow.png';
-import NightLightRainImage from './img/nightLightRain.png';
-import AutumnCloudsImage from './img/autumnClouds.png';
-import SpringCloudsImage from './img/springClouds.png';
-import SummerCloudsImage from './img/summerClouds.png';
-import WinterCloudsImage from './img/winterClouds.png';
-import SpringClearImage from './img/springClear.png';
+import LoadingImage from '../src/img/loading.gif';
+import ErrorImage from '../src/img/error.png';
+import ClearImage from '../src/img/clear.png';
+import RainImage from '../src/img/rain.png';
+import MistImage from '../src/img/mist.png';
+import NightClearImage from '../src/img/nightClear.png';
+import NightRainImage from '../src/img/nightRain.png';
+import NightSnowImage from '../src/img/nightSnow.png';
+import NightLightRainImage from '../src/img/nightLightRain.png';
+import AutumnCloudsImage from '../src/img/autumnClouds.png';
+import SpringCloudsImage from '../src/img/springClouds.png';
+import SummerCloudsImage from '../src/img/summerClouds.png';
+import WinterCloudsImage from '../src/img/winterClouds.png';
+import SpringClearImage from '../src/img/springClear.png';
 
 class App extends React.Component {
     constructor(props) {
