@@ -32,14 +32,10 @@ h2 {
 }
 
 .loading {
-    vertical-align: middle;
-    width: 50%;
-}
-
-.loadingWrapper {
-    height: 100vh;
-    line-height: 100vh;
-    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .loadingHeight {
