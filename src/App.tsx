@@ -24,9 +24,9 @@ export default function App() {
     };
 
     useEffect(() => {
+        if (!error) updateGeoData(city);
         showWeatherImage();
-        updateGeoData(city);
-    }, );
+    }, [city]);
 
     if (error) {
         return (
