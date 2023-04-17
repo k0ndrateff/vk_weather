@@ -5,11 +5,10 @@ import App from "./App";
 
 // Init VK  Mini App
 bridge.send("VKWebAppInit").then(r => {
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(
+    ReactDOM.render(
         <React.StrictMode>
             <App />
         </React.StrictMode>
-    );
+    , document.getElementById("root"));
 });
 
