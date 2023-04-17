@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;700&effect=anaglyph&display=swap');
+
+:root {
+    overflow: hidden;
+}
+
+h1 { 
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 2em;
+    text-align: center;
+    color: white;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+h2 { 
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    font-size: 1.5em;
+    color: white;
+}
+
+.mainGradient {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#ef9000, #9b1857);
+}
+
+.fullHeight {
+    height: 100vh;
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.loadingHeight {
+    position: relative;
+    top: 0;
+    left: -5%;
+    height: 100%;
+}
+
+.wrapper {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.city {
+    font-family: 'Rubik', cursive;
+    font-weight: 500;
+    font-size: 2.2em;
+    text-decoration: underline dotted;
+    text-align: left;
+}
+
+.city:hover {
+    color: rgb(252, 55, 5);
+}
+
+.displayText {
+    text-align: left;
+    font-size: 1.9em;
+    font-weight: 800;
+}
+
+.linky:hover {
+    color: rgb(252, 55, 5);
+}
+
+.laterBoxes {
+    width: 100%;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+.laterBox {
+    background-color: #9b1857;
+    border-radius: 25px;
+}
+
+.laterTime {
+    font-size: 1.5em;
+    margin: 15px 15px -10px 15px;
+    font-weight: 500;
+}
+
+.laterTemp {
+    font-size: 3em;
+    margin: 0 10px 0 10px;
+    text-align: right;
+}
+
+.foreBack {
+    background-color: #ef9000;
+    border-radius: 15px;
+    margin-bottom: 2%;
+}
+
+.fore {
+    font-size: 1.4em;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.cityUnder {
+    margin-top: -3%;
+    font-weight: 500;
+}
+
+.faded {
+    opacity: 80%;
+}
+
+.preload {
+    display: none;
+}
+
+@media screen and (min-width: 600px) {
+    .varWidth {
+        width: 100%;
+    }
+}
+
+.errorMessage {
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    z-index: 100;
+}
+
+.aligner {
+    text-align: center;
+    align-items: center;
+}
+
+.copyright {
+    font-size: 0.85em;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    color: white;
+    text-decoration: none;
+}
+
+.shareDiv {
+    margin-top: 12%;
+}
+
+.shareLink {
+    text-decoration: underline dotted;
+    font-weight: 500;
+}

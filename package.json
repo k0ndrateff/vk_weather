@@ -1,7 +1,11 @@
 {
-  "name": "vk_weather_new",
-  "version": "0.1.0",
-  "private": true,
+  "name": "vk_weather",
+  "version": "2.1.0",
+  "description": "Weather app for VK Mini Apps platform",
+  "homepage": "https://k0ndrateff.github.io/vk_weather/",
+  "main": "index.js",
+  "author": "Egor Kondratev",
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -10,6 +14,10 @@
     "@types/node": "^16.18.23",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
+    "@vkontakte/icons": "^2.28.0",
+    "@vkontakte/vk-bridge": "^2.7.2",
+    "@vkontakte/vkui": "^5.3.1",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -17,10 +25,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env PORT=10888 HTTPS=true react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
