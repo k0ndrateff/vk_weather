@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/vk_weather/static/js/main.4d720f61.js",
+    "main.js": "/vk_weather/static/js/main.e4ae5ed7.js",
     "index.html": "/vk_weather/index.html",
-    "main.4d720f61.js.map": "/vk_weather/static/js/main.4d720f61.js.map"
+    "main.e4ae5ed7.js.map": "/vk_weather/static/js/main.e4ae5ed7.js.map"
   },
   "entrypoints": [
-    "static/js/main.4d720f61.js"
+    "static/js/main.e4ae5ed7.js"
   ]
 }
