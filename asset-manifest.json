@@ -1,10 +1,34 @@
 {
   "files": {
-    "main.js": "/vk_weather/static/js/main.443e08f5.js",
+    "main.js": "/vk_weather/static/js/main.c08a21ca.chunk.js",
+    "main.js.map": "/vk_weather/static/js/main.c08a21ca.chunk.js.map",
+    "runtime-main.js": "/vk_weather/static/js/runtime-main.8a4091cb.js",
+    "runtime-main.js.map": "/vk_weather/static/js/runtime-main.8a4091cb.js.map",
+    "static/css/2.ec44b0e3.chunk.css": "/vk_weather/static/css/2.ec44b0e3.chunk.css",
+    "static/js/2.1cdefd76.chunk.js": "/vk_weather/static/js/2.1cdefd76.chunk.js",
+    "static/js/2.1cdefd76.chunk.js.map": "/vk_weather/static/js/2.1cdefd76.chunk.js.map",
     "index.html": "/vk_weather/index.html",
-    "main.443e08f5.js.map": "/vk_weather/static/js/main.443e08f5.js.map"
+    "static/css/2.ec44b0e3.chunk.css.map": "/vk_weather/static/css/2.ec44b0e3.chunk.css.map",
+    "static/js/2.1cdefd76.chunk.js.LICENSE.txt": "/vk_weather/static/js/2.1cdefd76.chunk.js.LICENSE.txt",
+    "static/media/autumnClouds.b5c3cb2c.png": "/vk_weather/static/media/autumnClouds.b5c3cb2c.png",
+    "static/media/clear.bb693d08.png": "/vk_weather/static/media/clear.bb693d08.png",
+    "static/media/error.def73663.png": "/vk_weather/static/media/error.def73663.png",
+    "static/media/loading.71f6a116.gif": "/vk_weather/static/media/loading.71f6a116.gif",
+    "static/media/mist.f05a9e0a.png": "/vk_weather/static/media/mist.f05a9e0a.png",
+    "static/media/nightClear.fdaa924a.png": "/vk_weather/static/media/nightClear.fdaa924a.png",
+    "static/media/nightLightRain.1a8870bc.png": "/vk_weather/static/media/nightLightRain.1a8870bc.png",
+    "static/media/nightRain.77d1efa6.png": "/vk_weather/static/media/nightRain.77d1efa6.png",
+    "static/media/nightSnow.963b7cd9.png": "/vk_weather/static/media/nightSnow.963b7cd9.png",
+    "static/media/rain.cc74d3c5.png": "/vk_weather/static/media/rain.cc74d3c5.png",
+    "static/media/springClear.643be763.png": "/vk_weather/static/media/springClear.643be763.png",
+    "static/media/springClouds.4bc0e789.png": "/vk_weather/static/media/springClouds.4bc0e789.png",
+    "static/media/summerClouds.97cf2434.png": "/vk_weather/static/media/summerClouds.97cf2434.png",
+    "static/media/winterClouds.81ad28de.png": "/vk_weather/static/media/winterClouds.81ad28de.png"
   },
   "entrypoints": [
-    "static/js/main.443e08f5.js"
+    "static/js/runtime-main.8a4091cb.js",
+    "static/css/2.ec44b0e3.chunk.css",
+    "static/js/2.1cdefd76.chunk.js",
+    "static/js/main.c08a21ca.chunk.js"
   ]
 }
